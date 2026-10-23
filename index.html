@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Deutsch – fiszki</title>
+<style>
+  :root {
+    --bg: #f6f4ef; --surface: #fff; --text: #1f2430; --muted: #6b7280;
+    --accent: #e8590c; --accent-soft: #fff0e6; --ok: #2f9e44; --warn: #d9480f;
+    --border: #e5e1d8; --shadow: 0 8px 24px rgba(31,36,48,.08);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14161b; --surface: #1e2128; --text: #eceef2; --muted: #98a0ae;
+      --accent: #ff8a4c; --accent-soft: #2b2119; --ok: #51cf66; --warn: #ff922b;
+      --border: #2e323b; --shadow: 0 8px 24px rgba(0,0,0,.35);
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; line-height: 1.5;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 20px 16px 48px; }
+  header { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  h1 { font-size: 1.5rem; margin: 0; }
+  h1 span { color: var(--accent); }
+  .tabs { display: flex; gap: 6px; margin: 16px 0; }
+  button { font: inherit; color: inherit; cursor: pointer; }
+  .tab, .chip {
+    border: 1px solid var(--border); background: var(--surface); padding: 6px 14px;
+    border-radius: 999px; font-size: .9rem;
+  }
+  .tab[aria-pressed="true"], .chip[aria-pressed="true"] {
+    background: var(--accent); border-color: var(--accent); color: #fff;
+  }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+  .bar { display: flex; justify-content: space-between; align-items: center; color: var(--muted); font-size: .9rem; margin-bottom: 10px; }
+  .bar button { background: none; border: none; color: var(--accent); padding: 4px; }
+  .progress { height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; margin-bottom: 18px; }
+  .progress i { display: block; height: 100%; width: 0; background: var(--ok); transition: width .3s; }
+
+  .scene { perspective: 1200px; }
+  .card {
+    position: relative; width: 100%; min-height: 340px; cursor: pointer;
+    transform-style: preserve-3d; transition: transform .5s;
+  }
+  .card.flipped { transform: rotateY(180deg); }
+  .face {
+    position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 20px; box-shadow: var(--shadow);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 24px 22px; gap: 10px;
+  }
+  .back { transform: rotateY(180deg); background: var(--accent-soft); }
+  .emoji { font-size: 4.5rem; line-height: 1; }
+  .de { font-size: 1.7rem; font-weight: 700; overflow-wrap: anywhere; }
+  .pl { font-size: 1.35rem; font-weight: 600; }
+  .ex { font-size: 1.05rem; }
+  .ex-pl { font-size: .95rem; color: var(--muted); }
+  .note { font-size: .85rem; color: var(--muted); font-style: italic; }
+  .hint { position: absolute; bottom: 12px; font-size: .75rem; color: var(--muted); }
+  .cat-tag { position: absolute; top: 12px; left: 16px; font-size: .75rem; color: var(--muted); }
+  .speak {
+    position: absolute; top: 8px; right: 10px; border: none; background: none; font-size: 1.4rem; padding: 6px;
+  }
+  mark { background: none; color: var(--accent); font-weight: 700; }
+
+  .controls { display: flex; gap: 10px; margin-top: 18px; }
+  .controls button {
+    flex: 1; padding: 12px; border-radius: 12px; border: 1px solid var(--border);
+    background: var(--surface); font-weight: 600;
+  }
+  .controls .again { color: var(--warn); }
+  .controls .know { color: var(--ok); }
+  .nav { display: flex; justify-content: space-between; margin-top: 12px; }
+  .nav button { background: none; border: none; color: var(--muted); padding: 8px 4px; }
+  .empty { text-align: center; padding: 60px 0; color: var(--muted); }
+
+  .panel { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 18px; margin-bottom: 16px; box-shadow: var(--shadow); }
+  .panel h2 { margin: 0 0 8px; font-size: 1.1rem; }
+  .panel p { margin: 6px 0; }
+  table { width: 100%; border-collapse: collapse; margin-top: 8px; font-size: .95rem; }
+  th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--border); }
+  th { color: var(--muted); font-weight: 600; font-size: .8rem; text-transform: uppercase; }
+  td b { color: var(--accent); }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Deutsch <span>lernen</span> 🇩🇪</h1>
+  </header>
+
+  <div class="tabs" role="tablist">
+    <button class="tab" id="tab-cards" aria-pressed="true">Fiszki</button>
+    <button class="tab" id="tab-grammar" aria-pressed="false">Gramatyka</button>
+  </div>
+
+  <section id="cards-view">
+    <div class="chips" id="chips"></div>
+    <div class="bar">
+      <span id="counter"></span>
+      <span>
+        <button id="shuffle">🔀 Wymieszaj</button>
+        <button id="reset">Zeruj postęp</button>
+      </span>
+    </div>
+    <div class="progress"><i id="bar"></i></div>
+
+    <div id="stage"></div>
+
+    <div class="controls" id="controls">
+      <button class="again" id="again">↻ Jeszcze raz</button>
+      <button class="know" id="know">✓ Umiem</button>
+    </div>
+    <div class="nav" id="nav">
+      <button id="prev">← Poprzednia</button>
+      <button id="next">Następna →</button>
+    </div>
+  </section>
+
+  <section id="grammar-view" hidden>
+    <div class="panel">
+      <h2>mögen – lubić</h2>
+      <table>
+        <tr><th>ich</th><td><b>mag</b></td><th>wir</th><td><b>mögen</b></td></tr>
+        <tr><th>du</th><td><b>magst</b></td><th>ihr</th><td><b>mögt</b></td></tr>
+        <tr><th>er/sie/es</th><td><b>mag</b></td><th>sie/Sie</th><td><b>mögen</b></td></tr>
+      </table>
+      <p>Ich esse gern Schokolade. = Ich <b>mag</b> Schokolade.</p>
+      <p class="ex-pl">Lubię czekoladę.</p>
+    </div>
+
+    <div class="panel">
+      <h2>Szyk zdania – czasownik zawsze na 2. miejscu</h2>
+      <table>
+        <tr><td>Maria</td><td><b>isst</b></td><td>morgens</td><td>Müsli.</td></tr>
+        <tr><td>Morgens</td><td><b>isst</b></td><td>Maria</td><td>Müsli.</td></tr>
+      </table>
+      <p class="ex-pl">Gdy na początku stoi określenie czasu, podmiot przesuwa się za czasownik.</p>
+    </div>
+
+    <div class="panel">
+      <h2>Possessivartikel – Nominativ</h2>
+      <table>
+        <tr><th></th><th>m</th><th>f</th><th>n</th><th>pl</th></tr>
+        <tr><td>ich</td><td>mein</td><td>meine</td><td>mein</td><td>meine</td></tr>
+        <tr><td>du</td><td>dein</td><td>deine</td><td>dein</td><td>deine</td></tr>
+        <tr><td>er / es</td><td>sein</td><td>seine</td><td>sein</td><td>seine</td></tr>
+        <tr><td>sie</td><td>ihr</td><td>ihre</td><td>ihr</td><td>ihre</td></tr>
+        <tr><td>wir</td><td>unser</td><td>unsere</td><td>unser</td><td>unsere</td></tr>
+        <tr><td>ihr</td><td>euer</td><td>eure</td><td>euer</td><td>eure</td></tr>
+        <tr><td>sie / Sie</td><td>ihr / Ihr</td><td>ihre / Ihre</td><td>ihr / Ihr</td><td>ihre / Ihre</td></tr>
+      </table>
+    </div>
+
+    <div class="panel">
+      <h2>Der See vs. die See</h2>
+      <p><b>der See</b> – jezioro: Er schwimmt im See.</p>
+      <p><b>die See / das Meer</b> – morze: Die See ist heute ruhig.</p>
+    </div>
+  </section>
+</div>
+
+<script>
+// Dodawanie nowych fiszek: dopisz obiekt do tablicy CARDS.
+// Pole `ex` może zawierać <mark>...</mark>, żeby wyróżnić ważny fragment.
+const CARDS = [
+  // Spóźnienia
+  { cat: "Spóźnienia", emoji: "⏰", de: "Ich bin spät dran.", pl: "Jestem spóźniony/a. (późno mi)",
+    ex: "Entschuldigung, <mark>ich bin spät dran</mark> – der Bus kommt nicht.", exPl: "Przepraszam, jestem spóźniony – autobus nie przyjeżdża." },
+  { cat: "Spóźnienia", emoji: "🚆", de: "die Verspätung", pl: "spóźnienie, opóźnienie",
+    ex: "Mein Zug hat <mark>Verspätung</mark>.", exPl: "Mój pociąg ma opóźnienie." },
+  { cat: "Spóźnienia", emoji: "🙏", de: "Entschuldigung für die Verspätung.", pl: "Przepraszam za spóźnienie.",
+    ex: "Entschuldigung, dass ich mich <mark>verspätet</mark> habe.", exPl: "Przepraszam, że się spóźniłem." },
+  { cat: "Spóźnienia", emoji: "🕐", de: "sich verspäten", pl: "spóźnić się",
+    ex: "Ich habe <mark>mich verspätet</mark>.", exPl: "Spóźniłem się.", note: "Perfekt: hat sich verspätet" },
+
+  // Podróże i wakacje
+  { cat: "Podróże", emoji: "🇬🇷", de: "Griechenland", pl: "Grecja",
+    ex: "Athen ist die Hauptstadt von <mark>Griechenland</mark>.", exPl: "Ateny to stolica Grecji.", note: "Griechen<u>land</u> – Athen" },
+  { cat: "Podróże", emoji: "🏝️", de: "die Insel", pl: "wyspa",
+    ex: "Griechische <mark>Inseln</mark> sind nichts für mich.", exPl: "Greckie wyspy nie są dla mnie." },
+  { cat: "Podróże", emoji: "🤷", de: "nichts für mich sein", pl: "nie być dla mnie, nie w moim stylu",
+    ex: "Griechische Inseln sind <mark>nichts für mich</mark>.", exPl: "Greckie wyspy to nie dla mnie." },
+  { cat: "Podróże", emoji: "😴", de: "Es ist nichts los hier.", pl: "Nic się tu nie dzieje.",
+    ex: "Auf der Insel <mark>ist nichts los</mark>.", exPl: "Na wyspie nic się nie dzieje." },
+  { cat: "Podróże", emoji: "🎉", de: "Es ist viel los hier.", pl: "Dużo się tu dzieje.",
+    ex: "In Athen <mark>ist viel los</mark>.", exPl: "W Atenach dużo się dzieje." },
+  { cat: "Podróże", emoji: "🏞️", de: "der See", pl: "jezioro",
+    ex: "Er schwimmt im <mark>See</mark>.", exPl: "On pływa w jeziorze.", note: "der See = jezioro, die See = morze" },
+  { cat: "Podróże", emoji: "🌊", de: "die See / das Meer", pl: "morze",
+    ex: "Die <mark>See</mark> ist heute ruhig.", exPl: "Morze jest dziś spokojne." },
+  { cat: "Podróże", emoji: "🧘", de: "ruhig sein", pl: "być spokojnym / cichym",
+    ex: "Das Meer ist heute <mark>ruhig</mark>.", exPl: "Morze jest dziś spokojne." },
+  { cat: "Podróże", emoji: "⚡", de: "energiegeladen", pl: "pełen energii",
+    ex: "Nach dem Urlaub bin ich <mark>energiegeladen</mark>.", exPl: "Po urlopie jestem pełen energii." },
+  { cat: "Podróże", emoji: "🔋", de: "Energie tanken", pl: "naładować baterie",
+    ex: "Ich habe am Meer <mark>Energie getankt</mark>.", exPl: "Naładowałem baterie nad morzem.", note: "Perfekt: hat getankt" },
+  { cat: "Podróże", emoji: "🦐", de: "die Meeresfrüchte", pl: "owoce morza",
+    ex: "Ich esse gern <mark>Meeresfrüchte</mark>.", exPl: "Lubię jeść owoce morza." },
+
+  // Nawyki i dom
+  { cat: "Nawyki i dom", emoji: "📉", de: "vernachlässigen", pl: "zaniedbywać",
+    ex: "Ich <mark>vernachlässige</mark> meine Arbeit.", exPl: "Zaniedbuję swoją pracę." },
+  { cat: "Nawyki i dom", emoji: "🏃", de: "Ich vernachlässige meine Sportroutine.", pl: "Zaniedbuję swoją rutynę sportową.",
+    ex: "Ich <mark>vernachlässige</mark> meine Familie.", exPl: "Zaniedbuję swoją rodzinę." },
+  { cat: "Nawyki i dom", emoji: "🌅", de: "Ich verspreche mir jeden Tag, dass ich früher aufstehe.", pl: "Codziennie obiecuję sobie, że będę wstawać wcześniej.",
+    ex: "Ich verspreche mir, <mark>dass ich früher aufstehe</mark>.", exPl: "Obiecuję sobie, że wstanę wcześniej.", note: "dass → czasownik na końcu zdania" },
+  { cat: "Nawyki i dom", emoji: "🧹", de: "staubsaugen", pl: "odkurzać",
+    ex: "Vor 2 Tagen habe ich <mark>gestaubsaugt</mark>.", exPl: "Dwa dni temu odkurzałem.", note: "Perfekt: habe gestaubsaugt" },
+
+  // Jedzenie
+  { cat: "Jedzenie", emoji: "🥐", de: "das Frühstück", pl: "śniadanie",
+    ex: "Zum <mark>Frühstück</mark> esse ich zwei Brötchen.", exPl: "Na śniadanie jem dwie bułki." },
+  { cat: "Jedzenie", emoji: "🍝", de: "das Mittagessen", pl: "obiad",
+    ex: "Zum <mark>Mittagessen</mark> esse ich oft Nudeln.", exPl: "Na obiad często jem makaron." },
+  { cat: "Jedzenie", emoji: "🍲", de: "das Abendessen", pl: "kolacja",
+    ex: "Zum <mark>Abendessen</mark> esse ich Suppe.", exPl: "Na kolację jem zupę." },
+  { cat: "Jedzenie", emoji: "🥖", de: "das Brötchen", pl: "bułka",
+    ex: "Ich esse ein <mark>Brötchen</mark> mit Butter und Käse.", exPl: "Jem bułkę z masłem i serem." },
+  { cat: "Jedzenie", emoji: "🧀", de: "der Käse", pl: "ser",
+    ex: "Brot mit <mark>Käse</mark> oder Schinken.", exPl: "Chleb z serem lub szynką." },
+  { cat: "Jedzenie", emoji: "🥓", de: "der Schinken", pl: "szynka",
+    ex: "Brot mit Käse oder <mark>Schinken</mark>.", exPl: "Chleb z serem lub szynką." },
+  { cat: "Jedzenie", emoji: "🥣", de: "das Müsli", pl: "musli",
+    ex: "Lina isst <mark>Müsli</mark> mit Milch.", exPl: "Lina je musli z mlekiem." },
+  { cat: "Jedzenie", emoji: "🥛", de: "die Milch", pl: "mleko",
+    ex: "Müsli mit <mark>Milch</mark>.", exPl: "Musli z mlekiem." },
+  { cat: "Jedzenie", emoji: "🍎", de: "das Obst", pl: "owoce",
+    ex: "Zum Frühstück mag ich gern <mark>Obst</mark>: Äpfel, Birnen oder Bananen.", exPl: "Na śniadanie lubię owoce: jabłka, gruszki albo banany." },
+  { cat: "Jedzenie", emoji: "🍰", de: "der Kuchen", pl: "ciasto",
+    ex: "Am Wochenende essen wir gern <mark>Kuchen</mark>.", exPl: "W weekend chętnie jemy ciasto." },
+  { cat: "Jedzenie", emoji: "🍫", de: "die Schokolade", pl: "czekolada",
+    ex: "Ich mag <mark>Schokolade</mark>.", exPl: "Lubię czekoladę." },
+  { cat: "Jedzenie", emoji: "🐟", de: "der Fisch", pl: "ryba",
+    ex: "Wir mögen gern <mark>Fisch</mark> und Gemüse.", exPl: "Lubimy ryby i warzywa." },
+  { cat: "Jedzenie", emoji: "🥦", de: "das Gemüse", pl: "warzywa",
+    ex: "Wir essen <mark>Gemüse</mark> und Reis.", exPl: "Jemy warzywa i ryż." },
+  { cat: "Jedzenie", emoji: "🥔", de: "die Kartoffel", pl: "ziemniak",
+    ex: "Fleisch mit <mark>Kartoffeln</mark>.", exPl: "Mięso z ziemniakami." },
+  { cat: "Jedzenie", emoji: "👍", de: "mögen", pl: "lubić",
+    ex: "Ich <mark>mag</mark> Schokolade. = Ich esse gern Schokolade.", exPl: "Lubię czekoladę.", note: "ich mag, du magst, er mag, wir mögen, ihr mögt, sie mögen" },
+
+  // Pory dnia
+  { cat: "Pory dnia", emoji: "🌄", de: "morgens", pl: "rano (regularnie)",
+    ex: "<mark>Morgens</mark> isst Maria Brot mit Käse.", exPl: "Rano Maria je chleb z serem." },
+  { cat: "Pory dnia", emoji: "☕", de: "vormittags", pl: "przed południem",
+    ex: "<mark>Vormittags</mark> esse ich oft einen Joghurt.", exPl: "Przed południem często jem jogurt." },
+  { cat: "Pory dnia", emoji: "☀️", de: "mittags", pl: "w południe",
+    ex: "<mark>Mittags</mark> esse ich in der Kantine.", exPl: "W południe jem w stołówce." },
+  { cat: "Pory dnia", emoji: "🌤️", de: "nachmittags", pl: "po południu",
+    ex: "<mark>Nachmittags</mark> esse ich ein Stück Schokolade.", exPl: "Po południu jem kawałek czekolady." },
+  { cat: "Pory dnia", emoji: "🌙", de: "abends", pl: "wieczorem",
+    ex: "<mark>Abends</mark> essen wir oft Brot, Salat oder Suppe.", exPl: "Wieczorem często jemy chleb, sałatkę albo zupę." },
+];
+
+const ALL = "Wszystkie";
+const KEY = "deutsch-known-v1";
+const $ = (id) => document.getElementById(id);
+
+let known = new Set();
+try { known = new Set(JSON.parse(localStorage.getItem(KEY) || "[]")); } catch (e) {}
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify([...known])); } catch (e) {} };
+
+let category = ALL;
+let order = CARDS.map((_, i) => i);
+let pos = 0;
+let flipped = false;
+
+const cats = [ALL, ...new Set(CARDS.map((c) => c.cat))];
+const visible = () => order.filter((i) => category === ALL || CARDS[i].cat === category);
+
+function renderChips() {
+  $("chips").innerHTML = "";
+  cats.forEach((c) => {
+    const b = document.createElement("button");
+    b.className = "chip";
+    b.textContent = c;
+    b.setAttribute("aria-pressed", String(c === category));
+    b.onclick = () => { category = c; pos = 0; flipped = false; renderChips(); render(); };
+    $("chips").appendChild(b);
+  });
+}
+
+function render() {
+  const list = visible();
+  const done = list.filter((i) => known.has(i)).length;
+  $("bar").style.width = list.length ? (done / list.length) * 100 + "%" : "0";
+  $("counter").textContent = list.length ? `${Math.min(pos + 1, list.length)} / ${list.length} · umiem: ${done}` : "";
+  const empty = !list.length;
+  $("controls").hidden = $("nav").hidden = empty;
+  if (empty) { $("stage").innerHTML = '<div class="empty">Brak fiszek.</div>'; return; }
+  if (pos >= list.length) pos = 0;
+
+  const c = CARDS[list[pos]];
+  $("stage").innerHTML = `
+    <div class="scene">
+      <div class="card ${flipped ? "flipped" : ""}" id="card">
+        <div class="face front">
+          <span class="cat-tag">${c.cat}</span>
+          <button class="speak" data-say="${encodeURIComponent(c.de)}" title="Posłuchaj" aria-label="Posłuchaj">🔊</button>
+          <div class="emoji">${c.emoji}</div>
+          <div class="de">${c.de}</div>
+          <span class="hint">kliknij, aby odwrócić</span>
+        </div>
+        <div class="face back">
+          <span class="cat-tag">${known.has(list[pos]) ? "✓ umiem" : c.cat}</span>
+          <button class="speak" data-say="${encodeURIComponent(c.ex.replace(/<[^>]+>/g, ""))}" title="Posłuchaj przykładu" aria-label="Posłuchaj przykładu">🔊</button>
+          <div class="pl">${c.pl}</div>
+          <div class="ex">${c.ex}</div>
+          <div class="ex-pl">${c.exPl}</div>
+          ${c.note ? `<div class="note">${c.note}</div>` : ""}
+        </div>
+      </div>
+    </div>`;
+  $("card").onclick = (e) => {
+    if (e.target.closest(".speak")) return speak(decodeURIComponent(e.target.closest(".speak").dataset.say));
+    flipped = !flipped;
+    $("card").classList.toggle("flipped", flipped);
+  };
+}
+
+function speak(text) {
+  if (!("speechSynthesis" in window)) return;
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = "de-DE";
+  u.rate = 0.9;
+  speechSynthesis.speak(u);
+}
+
+function go(delta) {
+  const n = visible().length;
+  if (!n) return;
+  pos = (pos + delta + n) % n;
+  flipped = false;
+  render();
+}
+
+function mark(isKnown) {
+  const list = visible();
+  const id = list[pos];
+  if (isKnown) known.add(id); else known.delete(id);
+  save();
+  go(1);
+}
+
+$("next").onclick = () => go(1);
+$("prev").onclick = () => go(-1);
+$("know").onclick = () => mark(true);
+$("again").onclick = () => mark(false);
+$("shuffle").onclick = () => {
+  for (let i = order.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [order[i], order[j]] = [order[j], order[i]];
+  }
+  pos = 0; flipped = false; render();
+};
+$("reset").onclick = () => {
+  if (confirm("Wyzerować postęp?")) { known.clear(); save(); render(); }
+};
+
+document.addEventListener("keydown", (e) => {
+  if ($("cards-view").hidden) return;
+  if (e.key === "ArrowRight") go(1);
+  else if (e.key === "ArrowLeft") go(-1);
+  else if (e.key === " ") { e.preventDefault(); flipped = !flipped; $("card")?.classList.toggle("flipped", flipped); }
+});
+
+function showTab(name) {
+  const cards = name === "cards";
+  $("cards-view").hidden = !cards;
+  $("grammar-view").hidden = cards;
+  $("tab-cards").setAttribute("aria-pressed", String(cards));
+  $("tab-grammar").setAttribute("aria-pressed", String(!cards));
+}
+$("tab-cards").onclick = () => showTab("cards");
+$("tab-grammar").onclick = () => showTab("grammar");
+
+renderChips();
+render();
+</script>
+</body>
+</html>
