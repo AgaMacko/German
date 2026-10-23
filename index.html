@@ -96,6 +96,7 @@
 
   <div class="tabs" role="tablist">
     <button class="tab" id="tab-cards" aria-pressed="true">Fiszki</button>
+    <button class="tab" id="tab-stories" aria-pressed="false">Historyjki</button>
     <button class="tab" id="tab-grammar" aria-pressed="false">Gramatyka</button>
   </div>
 
@@ -109,6 +110,7 @@
       </span>
     </div>
     <div class="progress"><i id="bar"></i></div>
+    <button class="chip" id="read-story" hidden style="margin-bottom:14px">📖 Przeczytaj historyjkę do tych słów</button>
 
     <div id="stage"></div>
 
@@ -120,6 +122,11 @@
       <button id="prev">← Poprzednia</button>
       <button id="next">Następna →</button>
     </div>
+  </section>
+
+  <section id="stories-view" hidden>
+    <p class="ex-pl">Każda historyjka łączy słowa w jedną sytuację. Przeczytaj ją, a potem ćwicz fiszki z tej scenki.</p>
+    <div id="stories-list"></div>
   </section>
 
   <section id="grammar-view" hidden>
@@ -386,6 +393,113 @@ const CARDS = [
     ex: "Ich habe meine <mark>Hausaufgabe</mark> schon gemacht.", exPl: "Już odrobiłem pracę domową." },
 ];
 
+// Scenki: każda ma krótką historyjkę łączącą słowa w jeden wątek.
+// `words` to teksty `de` z fiszek (w kolejności nauki), `story` to pary [niemiecki, polski].
+const SCENES = [
+  { title: "🚆 Spóźniam się", words: ["der Bahnhof", "die Fahrkarte", "die Verspätung", "Keine Ahnung.", "Ich bin spät dran.", "sich verspäten", "Es tut mir leid.", "Entschuldigung für die Verspätung.", "Kein Problem."],
+    story: [
+      ["Am <mark>Bahnhof</mark> kaufe ich eine <mark>Fahrkarte</mark>. Mein Zug hat <mark>Verspätung</mark>.", "Na dworcu kupuję bilet. Mój pociąg ma opóźnienie."],
+      ["Wann kommt er? – <mark>Keine Ahnung.</mark> <mark>Ich bin spät dran!</mark>", "Kiedy przyjedzie? – Nie mam pojęcia. Jestem spóźniony!"],
+      ["Ich schreibe: „<mark>Es tut mir leid</mark>, dass ich <mark>mich verspätet</mark> habe. <mark>Entschuldigung für die Verspätung</mark>.“", "Piszę: „Przykro mi, że się spóźniłem. Przepraszam za spóźnienie.”"],
+      ["Die Antwort: „<mark>Kein Problem.</mark>“", "Odpowiedź: „Nie ma problemu.”"],
+    ] },
+  { title: "🏝️ Urlop w Grecji", words: ["Gute Reise!", "der Flughafen", "das Gepäck", "das Hotel", "Griechenland", "die Insel", "der Strand", "Es ist viel los hier.", "Es ist nichts los hier.", "nichts für mich sein"],
+    story: [
+      ["<mark>Gute Reise!</mark> Wir fahren zum <mark>Flughafen</mark> – mit viel <mark>Gepäck</mark>.", "Szczęśliwej podróży! Jedziemy na lotnisko – z dużym bagażem."],
+      ["Wir fliegen nach <mark>Griechenland</mark> und wohnen im <mark>Hotel</mark>.", "Lecimy do Grecji i mieszkamy w hotelu."],
+      ["In Athen <mark>ist viel los</mark>. Auf der <mark>Insel</mark> <mark>ist nichts los</mark> – nur der <mark>Strand</mark>.", "W Atenach dużo się dzieje. Na wyspie nic się nie dzieje – tylko plaża."],
+      ["Griechische Inseln sind <mark>nichts für mich</mark>. Ich mag Städte.", "Greckie wyspy nie są dla mnie. Lubię miasta."],
+    ] },
+  { title: "🌊 Nad morzem", words: ["der See", "die See / das Meer", "ruhig sein", "Energie tanken", "energiegeladen", "die Meeresfrüchte"],
+    story: [
+      ["Am Morgen schwimmt er im <mark>See</mark>. Ich gehe lieber ans <mark>Meer</mark>.", "Rano on pływa w jeziorze. Ja wolę iść nad morze."],
+      ["Die <mark>See</mark> ist heute <mark>ruhig</mark>.", "Morze jest dziś spokojne."],
+      ["Hier kann ich <mark>Energie tanken</mark> – danach bin ich <mark>energiegeladen</mark>.", "Tu mogę naładować baterie – potem jestem pełen energii."],
+      ["Zum Abendessen gibt es <mark>Meeresfrüchte</mark>.", "Na kolację są owoce morza."],
+    ] },
+  { title: "🌦️ Pogoda", words: ["das Wetter", "Die Sonne scheint.", "heiß / warm / kalt", "der Wind", "Es regnet.", "der Schnee"],
+    story: [
+      ["Wie ist das <mark>Wetter</mark> heute? <mark>Die Sonne scheint</mark> und es ist <mark>warm</mark>.", "Jaka jest dziś pogoda? Świeci słońce i jest ciepło."],
+      ["Aber am Nachmittag weht ein starker <mark>Wind</mark> – und dann <mark>regnet es</mark>.", "Ale po południu wieje silny wiatr – a potem pada deszcz."],
+      ["Im Winter ist es <mark>kalt</mark> und es liegt <mark>Schnee</mark>.", "Zimą jest zimno i leży śnieg."],
+    ] },
+  { title: "⏰ Rytm dnia", words: ["morgens", "vormittags", "mittags", "nachmittags", "abends", "immer / oft / manchmal / nie", "heute / gestern / morgen", "das Wochenende"],
+    story: [
+      ["<mark>Morgens</mark> trinke ich Kaffee, <mark>vormittags</mark> arbeite ich.", "Rano piję kawę, przed południem pracuję."],
+      ["<mark>Mittags</mark> esse ich in der Kantine, <mark>nachmittags</mark> gehe ich <mark>manchmal</mark> spazieren.", "W południe jem w stołówce, po południu czasami chodzę na spacer."],
+      ["<mark>Abends</mark> koche ich <mark>oft</mark> Suppe. Ich trinke <mark>immer</mark> Tee, aber <mark>nie</mark> spät.", "Wieczorem często gotuję zupę. Zawsze piję herbatę, ale nigdy późno."],
+      ["Am <mark>Wochenende</mark> schlafe ich lang. <mark>Gestern</mark> war Samstag, <mark>heute</mark> ist Sonntag, <mark>morgen</mark> arbeite ich wieder.", "W weekend długo śpię. Wczoraj była sobota, dziś jest niedziela, jutro znów pracuję."],
+    ] },
+  { title: "🎯 Dobre postanowienia", words: ["aufstehen", "Ich verspreche mir jeden Tag, dass ich früher aufstehe.", "vernachlässigen", "Ich vernachlässige meine Sportroutine."],
+    story: [
+      ["Jeden Tag <mark>verspreche ich mir</mark>, dass ich früher <mark>aufstehe</mark>.", "Codziennie obiecuję sobie, że będę wstawać wcześniej."],
+      ["Aber ich <mark>vernachlässige</mark> meine Arbeit und meine <mark>Sportroutine</mark>.", "Ale zaniedbuję pracę i swoją rutynę sportową."],
+      ["Ich will meine Familie nicht <mark>vernachlässigen</mark>!", "Nie chcę zaniedbywać rodziny!"],
+    ] },
+  { title: "🧹 Domowe obowiązki", words: ["aufräumen", "staubsaugen", "die Wäsche waschen", "abwaschen", "einkaufen", "kochen", "sich ausruhen"],
+    story: [
+      ["Am Samstag <mark>räume</mark> ich die Wohnung <mark>auf</mark>. Vor 2 Tagen habe ich <mark>gestaubsaugt</mark>.", "W sobotę sprzątam mieszkanie. Dwa dni temu odkurzałem."],
+      ["Heute <mark>wasche ich die Wäsche</mark>. Wer <mark>wäscht ab</mark>?", "Dziś robię pranie. Kto zmywa?"],
+      ["Ich gehe <mark>einkaufen</mark> und <mark>koche</mark> danach.", "Idę na zakupy, a potem gotuję."],
+      ["Am Sonntag <mark>ruhe ich mich aus</mark>.", "W niedzielę odpoczywam."],
+    ] },
+  { title: "🥐 Śniadanie", words: ["das Frühstück", "das Brötchen", "der Käse", "der Schinken", "das Müsli", "die Milch", "das Ei", "das Obst", "der Kaffee", "der Tee"],
+    story: [
+      ["Zum <mark>Frühstück</mark> esse ich zwei <mark>Brötchen</mark> mit <mark>Käse</mark> oder <mark>Schinken</mark>.", "Na śniadanie jem dwie bułki z serem lub szynką."],
+      ["Lina isst <mark>Müsli</mark> mit <mark>Milch</mark>, am Wochenende ein <mark>Ei</mark>.", "Lina je musli z mlekiem, w weekend jajko."],
+      ["Dazu gibt es <mark>Obst</mark>, <mark>Kaffee</mark> oder <mark>Tee</mark>.", "Do tego są owoce, kawa albo herbata."],
+    ] },
+  { title: "🍲 Obiad i kolacja", words: ["das Mittagessen", "das Fleisch", "die Kartoffel", "das Gemüse", "der Fisch", "das Abendessen", "das Wasser", "der Kuchen"],
+    story: [
+      ["Zum <mark>Mittagessen</mark> gibt es <mark>Fleisch</mark> mit <mark>Kartoffeln</mark> und <mark>Gemüse</mark>.", "Na obiad jest mięso z ziemniakami i warzywami."],
+      ["Am Freitag essen wir <mark>Fisch</mark>.", "W piątek jemy rybę."],
+      ["Zum <mark>Abendessen</mark> gibt es Suppe. Dazu trinken wir <mark>Wasser</mark>.", "Na kolację jest zupa. Do tego pijemy wodę."],
+      ["Am Sonntag gibt es <mark>Kuchen</mark>.", "W niedzielę jest ciasto."],
+    ] },
+  { title: "😋 Smaki i restauracja", words: ["Ich habe Hunger / Durst.", "lecker", "Guten Appetit!", "mögen", "die Schokolade", "Die Rechnung, bitte."],
+    story: [
+      ["Ich habe <mark>Hunger</mark>! Wir gehen ins Restaurant.", "Jestem głodny! Idziemy do restauracji."],
+      ["Die Suppe ist <mark>lecker</mark>. <mark>Guten Appetit!</mark>", "Zupa jest smaczna. Smacznego!"],
+      ["Zum Nachtisch: <mark>Schokolade</mark>. Ich <mark>mag</mark> Schokolade.", "Na deser: czekolada. Lubię czekoladę."],
+      ["Wir möchten zahlen: <mark>Die Rechnung, bitte.</mark>", "Chcemy zapłacić: poprosimy rachunek."],
+    ] },
+  { title: "👨‍👩‍👧 Rodzina", words: ["die Familie", "die Eltern", "die Schwester", "der Bruder", "die Großeltern", "das Kind"],
+    story: [
+      ["Meine <mark>Familie</mark> ist groß. Meine <mark>Eltern</mark> wohnen in Polen.", "Moja rodzina jest duża. Moi rodzice mieszkają w Polsce."],
+      ["Ich habe eine <mark>Schwester</mark> und einen <mark>Bruder</mark>.", "Mam siostrę i brata."],
+      ["Am Wochenende besuche ich meine <mark>Großeltern</mark>. Das <mark>Kind</mark> meiner Schwester spielt im Garten.", "W weekend odwiedzam dziadków. Dziecko mojej siostry bawi się w ogrodzie."],
+    ] },
+  { title: "💼 W pracy", words: ["die Arbeit", "das Büro", "der Kollege / die Kollegin", "die Besprechung"],
+    story: [
+      ["Ich gehe zur <mark>Arbeit</mark>. Ich arbeite im <mark>Büro</mark>.", "Idę do pracy. Pracuję w biurze."],
+      ["Meine <mark>Kollegin</mark> ist nett.", "Moja koleżanka z pracy jest miła."],
+      ["Die <mark>Besprechung</mark> beginnt um zehn Uhr.", "Narada zaczyna się o dziesiątej."],
+    ] },
+  { title: "📚 Na lekcji niemieckiego", words: ["lernen", "die Hausaufgabe", "Wie bitte?", "Ich verstehe das nicht.", "Könnten Sie das bitte wiederholen?", "Kannst du mir helfen?", "wiederholen", "Spaß machen"],
+    story: [
+      ["Ich <mark>lerne</mark> Deutsch. Die <mark>Hausaufgabe</mark> ist schwer.", "Uczę się niemieckiego. Praca domowa jest trudna."],
+      ["Die Lehrerin spricht schnell. <mark>Wie bitte?</mark> <mark>Ich verstehe das nicht.</mark>", "Nauczycielka mówi szybko. Słucham? Nie rozumiem tego."],
+      ["<mark>Könnten Sie das bitte wiederholen?</mark>", "Czy mogłaby Pani to powtórzyć?"],
+      ["<mark>Kannst du mir helfen?</mark> – Klar! Zu Hause <mark>wiederhole</mark> ich alles. Es <mark>macht Spaß</mark>!", "Możesz mi pomóc? – Jasne! W domu wszystko powtarzam. To sprawia radość!"],
+    ] },
+  { title: "💬 Rozmowa ze znajomymi", words: ["Wie geht's?", "Ich habe keine Zeit.", "sich freuen auf + Akkusativ", "Das ist mir egal."],
+    story: [
+      ["<mark>Wie geht's</mark> dir? – Gut, danke!", "Jak się masz? – Dobrze, dziękuję!"],
+      ["Hast du am Samstag Zeit? – Leider <mark>habe ich keine Zeit</mark>. Aber ich <mark>freue mich auf</mark> Sonntag!", "Masz czas w sobotę? – Niestety nie mam czasu. Ale cieszę się na niedzielę!"],
+      ["Pizza oder Pasta? – <mark>Das ist mir egal.</mark>", "Pizza czy makaron? – Jest mi wszystko jedno."],
+    ] },
+];
+
+// Przypisz fiszki do scenek i ustal kolejność nauki (numery fiszek się nie zmieniają, więc postęp zostaje).
+const rank = new Map();
+SCENES.forEach((s, si) => s.words.forEach((w, wi) => {
+  const i = CARDS.findIndex((c) => c.de === w);
+  if (i < 0) { console.warn("Brak fiszki dla:", w); return; }
+  CARDS[i].cat = s.title;
+  rank.set(i, si * 100 + wi);
+}));
+CARDS.forEach((_, i) => { if (!rank.has(i)) rank.set(i, 9000 + i); });
+
 const ALL = "Wszystkie";
 const KEY = "deutsch-known-v1";
 const $ = (id) => document.getElementById(id);
@@ -395,11 +509,11 @@ try { known = new Set(JSON.parse(localStorage.getItem(KEY) || "[]")); } catch (e
 const save = () => { try { localStorage.setItem(KEY, JSON.stringify([...known])); } catch (e) {} };
 
 let category = ALL;
-let order = CARDS.map((_, i) => i);
+let order = CARDS.map((_, i) => i).sort((a, b) => rank.get(a) - rank.get(b));
 let pos = 0;
 let flipped = false;
 
-const cats = [ALL, ...new Set(CARDS.map((c) => c.cat))];
+const cats = [ALL, ...new Set(order.map((i) => CARDS[i].cat))];
 const visible = () => order.filter((i) => category === ALL || CARDS[i].cat === category);
 
 function renderChips() {
@@ -416,6 +530,7 @@ function renderChips() {
 
 function render() {
   const list = visible();
+  $("read-story").hidden = !SCENES.some((s) => s.title === category);
   const done = list.filter((i) => known.has(i)).length;
   $("bar").style.width = list.length ? (done / list.length) * 100 + "%" : "0";
   $("counter").textContent = list.length ? `${Math.min(pos + 1, list.length)} / ${list.length} · umiem: ${done}` : "";
@@ -500,14 +615,37 @@ document.addEventListener("keydown", (e) => {
 });
 
 function showTab(name) {
-  const cards = name === "cards";
-  $("cards-view").hidden = !cards;
-  $("grammar-view").hidden = cards;
-  $("tab-cards").setAttribute("aria-pressed", String(cards));
-  $("tab-grammar").setAttribute("aria-pressed", String(!cards));
+  ["cards", "stories", "grammar"].forEach((n) => {
+    $(n + "-view").hidden = n !== name;
+    $("tab-" + n).setAttribute("aria-pressed", String(n === name));
+  });
 }
 $("tab-cards").onclick = () => showTab("cards");
+$("tab-stories").onclick = () => showTab("stories");
 $("tab-grammar").onclick = () => showTab("grammar");
+
+function renderStories() {
+  $("stories-list").innerHTML = SCENES.map((s, si) => `
+    <div class="panel" id="scene-${si}">
+      <h2>${s.title}</h2>
+      ${s.story.map(([de, pl]) => `<p class="ex">${de}</p><p class="ex-pl">${pl}</p>`).join("")}
+      <p><button class="chip" data-scene="${si}">Ćwicz te fiszki (${s.words.length}) →</button></p>
+    </div>`).join("");
+}
+$("stories-list").onclick = (e) => {
+  const b = e.target.closest("[data-scene]");
+  if (!b) return;
+  category = SCENES[b.dataset.scene].title;
+  pos = 0; flipped = false;
+  renderChips(); render(); showTab("cards");
+  window.scrollTo(0, 0);
+};
+$("read-story").onclick = () => {
+  const si = SCENES.findIndex((s) => s.title === category);
+  showTab("stories");
+  document.getElementById("scene-" + si)?.scrollIntoView();
+};
+renderStories();
 
 renderChips();
 render();
