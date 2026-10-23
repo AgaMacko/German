@@ -548,12 +548,13 @@ function render() {
           <button class="speak" data-say="${encodeURIComponent(c.de)}" title="Posłuchaj" aria-label="Posłuchaj">🔊</button>
           <div class="emoji">${c.emoji}</div>
           <div class="de">${c.de}</div>
-          <span class="hint">kliknij, aby odwrócić</span>
+          <div class="pl">${c.pl}</div>
+          <span class="hint">kliknij, aby zobaczyć przykład</span>
         </div>
         <div class="face back">
           <span class="cat-tag">${known.has(list[pos]) ? "✓ umiem" : c.cat}</span>
           <button class="speak" data-say="${encodeURIComponent(c.ex.replace(/<[^>]+>/g, ""))}" title="Posłuchaj przykładu" aria-label="Posłuchaj przykładu">🔊</button>
-          <div class="pl">${c.pl}</div>
+          <div class="note">${c.de}</div>
           <div class="ex">${c.ex}</div>
           <div class="ex-pl">${c.exPl}</div>
           ${c.note ? `<div class="note">${c.note}</div>` : ""}
