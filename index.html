@@ -85,6 +85,13 @@
   th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--border); }
   th { color: var(--muted); font-weight: 600; font-size: .8rem; text-transform: uppercase; }
   td b { color: var(--accent); }
+  .formula { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0 8px; }
+  .formula span { background: var(--accent-soft); border: 1px solid var(--border); padding: 2px 10px; border-radius: 8px; font-weight: 600; font-size: .85rem; }
+  .drill-row { padding: 10px 0; border-bottom: 1px solid var(--border); cursor: pointer; }
+  .drill-pl { color: var(--muted); font-size: .95rem; }
+  .drill-de { font-weight: 600; font-size: 1.05rem; transition: filter .2s; }
+  .drill-row:not(.revealed) .drill-de { filter: blur(7px); user-select: none; }
+  .speak-inline { border: none; background: none; padding: 0 4px; font-size: 1rem; }
   [hidden] { display: none !important; }
 </style>
 </head>
@@ -97,6 +104,7 @@
   <div class="tabs" role="tablist">
     <button class="tab" id="tab-cards" aria-pressed="true">Fiszki</button>
     <button class="tab" id="tab-stories" aria-pressed="false">Historyjki</button>
+    <button class="tab" id="tab-drills" aria-pressed="false">Wzorce</button>
     <button class="tab" id="tab-grammar" aria-pressed="false">Gramatyka</button>
   </div>
 
@@ -127,6 +135,18 @@
   <section id="stories-view" hidden>
     <p class="ex-pl">Każda historyjka łączy słowa w jedną sytuację. Przeczytaj ją, a potem ćwicz fiszki z tej scenki.</p>
     <div id="stories-list"></div>
+  </section>
+
+  <section id="drills-view" hidden>
+    <div class="panel">
+      <h2>Jak ćwiczyć (metoda Michela Thomasa)</h2>
+      <p>1. Przeczytaj polskie zdanie i <b>powiedz je po niemiecku na głos</b>, zanim cokolwiek odsłonisz.</p>
+      <p>2. Kliknij zdanie, żeby zobaczyć odpowiedź. Pomarańczowy fragment to element, który doszedł w tym kroku.</p>
+      <p>3. Idź od góry do dołu: każde zdanie jest o jeden krok dłuższe od poprzedniego. Nie wkuwaj, tylko buduj.</p>
+      <p>4. Wracaj do tego samego wzorca w kolejnych dniach. Szyk zdania powtarza się, więc po kilku razach przychodzi sam.</p>
+      <p><button class="chip" id="drill-toggle">Pokaż wszystkie odpowiedzi</button></p>
+    </div>
+    <div id="drills-list"></div>
   </section>
 
   <section id="grammar-view" hidden>
@@ -616,13 +636,14 @@ document.addEventListener("keydown", (e) => {
 });
 
 function showTab(name) {
-  ["cards", "stories", "grammar"].forEach((n) => {
+  ["cards", "stories", "drills", "grammar"].forEach((n) => {
     $(n + "-view").hidden = n !== name;
     $("tab-" + n).setAttribute("aria-pressed", String(n === name));
   });
 }
 $("tab-cards").onclick = () => showTab("cards");
 $("tab-stories").onclick = () => showTab("stories");
+$("tab-drills").onclick = () => showTab("drills");
 $("tab-grammar").onclick = () => showTab("grammar");
 
 function renderStories() {
@@ -647,6 +668,125 @@ $("read-story").onclick = () => {
   document.getElementById("scene-" + si)?.scrollIntoView();
 };
 renderStories();
+
+// Wzorce zdań (metoda Michela Thomasa): każdy krok dokłada jeden element do poprzedniego zdania.
+// items: [polski, niemiecki]; <mark> wyróżnia to, co doszło w danym kroku.
+const DRILLS = [
+  { title: "1. Ich habe … (mam)", formula: ["Ich", "habe", "kiedy?", "co?"],
+    rule: "haben: ich habe, du hast. W pytaniu czasownik idzie na początek.",
+    items: [
+      ["Mam głód.", "Ich habe <mark>Hunger</mark>."],
+      ["Mam pragnienie.", "Ich habe <mark>Durst</mark>."],
+      ["Mam czas.", "Ich habe <mark>Zeit</mark>."],
+      ["Nie mam czasu.", "Ich habe <mark>keine</mark> Zeit."],
+      ["Dziś nie mam czasu.", "Ich habe <mark>heute</mark> keine Zeit."],
+      ["W weekend mam czas.", "Ich habe <mark>am Wochenende</mark> Zeit."],
+      ["Czy masz jutro czas?", "<mark>Hast du</mark> morgen Zeit?"],
+      ["Czy masz głód?", "Hast du Hunger?"],
+    ] },
+  { title: "2. Czasownik zawsze na 2. miejscu", formula: ["Ich", "esse", "kiedy?", "co?"],
+    rule: "Gdy na początku stoi określenie czasu, podmiot wskakuje za czasownik: Morgens esse ich …",
+    items: [
+      ["Jem chleb.", "Ich esse <mark>Brot</mark>."],
+      ["Jem rano chleb.", "Ich esse <mark>morgens</mark> Brot."],
+      ["Rano jem chleb.", "<mark>Morgens esse ich</mark> Brot."],
+      ["W południe jemy zupę.", "<mark>Mittags essen wir</mark> Suppe."],
+      ["Wieczorem piję herbatę.", "<mark>Abends trinke ich</mark> Tee."],
+      ["Czy jesz rano musli?", "<mark>Isst du</mark> morgens Müsli?"],
+      ["Co jesz rano?", "<mark>Was</mark> isst du morgens?"],
+      ["Maria je rano chleb z serem.", "Maria isst morgens Brot <mark>mit Käse</mark>."],
+      ["Rano Maria je chleb z serem.", "<mark>Morgens isst Maria</mark> Brot mit Käse."],
+    ] },
+  { title: "3. Ich gehe … (idę)", formula: ["Ich", "gehe", "kiedy?", "dokąd?"],
+    rule: "zum (der) · zur (die) · ins (das): zum Bahnhof, zur Arbeit, ins Büro.",
+    items: [
+      ["Idę na zakupy.", "Ich gehe <mark>einkaufen</mark>."],
+      ["Idę do pracy.", "Ich gehe <mark>zur Arbeit</mark>."],
+      ["Idę do biura.", "Ich gehe <mark>ins Büro</mark>."],
+      ["Idę na dworzec.", "Ich gehe <mark>zum Bahnhof</mark>."],
+      ["O ósmej idę do pracy.", "Ich gehe <mark>um acht Uhr</mark> zur Arbeit."],
+      ["W sobotę idę na zakupy.", "<mark>Am Samstag gehe ich</mark> einkaufen."],
+      ["Idziemy na plażę.", "<mark>Wir gehen</mark> zum Strand."],
+      ["Czy dziś idziesz na zakupy?", "<mark>Gehst du</mark> heute einkaufen?"],
+      ["Dokąd idziesz?", "<mark>Wohin</mark> gehst du?"],
+    ] },
+  { title: "4. Ich möchte / muss / kann + bezokolicznik", formula: ["Ich", "möchte", "…", "bezokolicznik na końcu"],
+    rule: "Przy czasowniku modalnym drugi czasownik (bezokolicznik) idzie na sam koniec zdania.",
+    items: [
+      ["Chcę uczyć się niemieckiego.", "Ich möchte Deutsch <mark>lernen</mark>."],
+      ["Muszę uczyć się niemieckiego.", "Ich <mark>muss</mark> Deutsch lernen."],
+      ["Muszę dziś posprzątać.", "Ich muss <mark>heute aufräumen</mark>."],
+      ["Muszę wstawać wcześniej.", "Ich muss <mark>früher aufstehen</mark>."],
+      ["Chcę w weekend odpocząć.", "Ich möchte <mark>mich am Wochenende ausruhen</mark>."],
+      ["Mogę ci pomóc.", "Ich <mark>kann dir helfen</mark>."],
+      ["Czy możesz mi pomóc?", "<mark>Kannst du mir</mark> helfen?"],
+      ["Czy możesz to powtórzyć?", "Kannst du <mark>das wiederholen</mark>?"],
+      ["Dziś nie mogę przyjść.", "Ich kann heute <mark>nicht kommen</mark>."],
+    ] },
+  { title: "5. Ich bin / Es ist … (jestem, jest)", formula: ["Ich / Es", "bin / ist", "(kiedy?)", "jaki?"],
+    rule: "sein: ich bin, du bist, er/sie/es ist, wir sind. Przymiotnik po sein się nie odmienia.",
+    items: [
+      ["Jestem spóźniony.", "Ich bin <mark>spät dran</mark>."],
+      ["Jestem pełen energii.", "Ich bin <mark>energiegeladen</mark>."],
+      ["Dziś jestem pełen energii.", "Ich bin <mark>heute</mark> energiegeladen."],
+      ["Morze jest spokojne.", "Das Meer ist <mark>ruhig</mark>."],
+      ["Zupa jest smaczna.", "Die Suppe ist <mark>lecker</mark>."],
+      ["Czy zupa jest smaczna?", "<mark>Ist</mark> die Suppe lecker?"],
+      ["Dziś jest gorąco.", "<mark>Heute ist es</mark> heiß."],
+      ["Tu dużo się dzieje.", "<mark>Hier ist viel los</mark>."],
+      ["Tu nic się nie dzieje.", "Hier ist <mark>nichts</mark> los."],
+    ] },
+  { title: "6. Ich habe … gemacht (czas przeszły)", formula: ["Ich", "habe", "kiedy?", "co?", "Partizip II na końcu"],
+    rule: "haben + Partizip II. Imiesłów (ge-…-t / ge-…-en) idzie na koniec zdania.",
+    items: [
+      ["Odkurzałem.", "Ich habe <mark>gestaubsaugt</mark>."],
+      ["Wczoraj odkurzałem.", "Ich habe <mark>gestern</mark> gestaubsaugt."],
+      ["Wczoraj odkurzałem. (inaczej)", "<mark>Gestern habe ich</mark> gestaubsaugt."],
+      ["Dwa dni temu odkurzałem.", "<mark>Vor zwei Tagen</mark> habe ich gestaubsaugt."],
+      ["Zrobiłem pranie.", "Ich habe <mark>die Wäsche gewaschen</mark>."],
+      ["Naładowałem baterie.", "Ich habe <mark>Energie getankt</mark>."],
+      ["Spóźniłem się.", "Ich habe <mark>mich verspätet</mark>."],
+      ["Wczoraj ugotowałem zupę.", "Ich habe gestern <mark>Suppe gekocht</mark>."],
+      ["Czy gotowałeś wczoraj?", "<mark>Hast du</mark> gestern gekocht?"],
+      ["Zjedliśmy rybę.", "<mark>Wir haben</mark> Fisch gegessen."],
+    ] },
+  { title: "7. …, dass ich … (że)", formula: ["Zdanie główne", ", dass", "podmiot", "…", "czasownik na końcu"],
+    rule: "Po dass czasownik odmieniony idzie na sam koniec zdania podrzędnego.",
+    items: [
+      ["Wiem, że pada.", "Ich weiß, <mark>dass es regnet</mark>."],
+      ["Myślę, że zupa jest smaczna.", "Ich denke, dass <mark>die Suppe lecker ist</mark>."],
+      ["Cieszę się, że masz czas.", "Ich freue mich, dass <mark>du Zeit hast</mark>."],
+      ["Przepraszam, że jestem spóźniony.", "Entschuldigung, dass <mark>ich spät dran bin</mark>."],
+      ["Przykro mi, że się spóźniłem.", "Es tut mir leid, dass ich mich <mark>verspätet habe</mark>."],
+      ["Obiecuję sobie, że będę wstawać wcześniej.", "Ich verspreche mir, dass ich <mark>früher aufstehe</mark>."],
+    ] },
+];
+
+function renderDrills() {
+  $("drills-list").innerHTML = DRILLS.map((d) => `
+    <div class="panel">
+      <h2>${d.title}</h2>
+      <div class="formula">${d.formula.map((f) => `<span>${f}</span>`).join("")}</div>
+      <p class="ex-pl">${d.rule}</p>
+      ${d.items.map(([pl, de]) => `
+        <div class="drill-row">
+          <div class="drill-pl">${pl}</div>
+          <div class="drill-de"><span>${de}</span> <button class="speak-inline" data-say="${encodeURIComponent(de.replace(/<[^>]+>/g, ""))}" aria-label="Posłuchaj">🔊</button></div>
+        </div>`).join("")}
+    </div>`).join("");
+}
+$("drills-list").onclick = (e) => {
+  const s = e.target.closest(".speak-inline");
+  if (s) return speak(decodeURIComponent(s.dataset.say));
+  e.target.closest(".drill-row")?.classList.toggle("revealed");
+};
+$("drill-toggle").onclick = () => {
+  const rows = [...document.querySelectorAll(".drill-row")];
+  const reveal = rows.some((r) => !r.classList.contains("revealed"));
+  rows.forEach((r) => r.classList.toggle("revealed", reveal));
+  $("drill-toggle").textContent = reveal ? "Ukryj wszystkie odpowiedzi" : "Pokaż wszystkie odpowiedzi";
+};
+renderDrills();
 
 renderChips();
 render();
