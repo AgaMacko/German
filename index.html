@@ -163,6 +163,24 @@
     </div>
 
     <div class="panel">
+      <h2>Akkusativ – zaimki osobowe (kogo? co?)</h2>
+      <table>
+        <tr><th>Nominativ</th><th>Akkusativ</th></tr>
+        <tr><td>ich</td><td><b>mich</b></td></tr>
+        <tr><td>du</td><td><b>dich</b></td></tr>
+        <tr><td>er</td><td><b>ihn</b></td></tr>
+        <tr><td>es</td><td><b>es</b></td></tr>
+        <tr><td>sie (ona)</td><td><b>sie</b></td></tr>
+        <tr><td>wir</td><td><b>uns</b></td></tr>
+        <tr><td>ihr</td><td><b>euch</b></td></tr>
+        <tr><td>sie (oni)</td><td><b>sie</b></td></tr>
+        <tr><td>Sie</td><td><b>Sie</b></td></tr>
+      </table>
+      <p>Zmienia się tylko: ich → <b>mich</b>, du → <b>dich</b>, er → <b>ihn</b>, wir → <b>uns</b>, ihr → <b>euch</b>.</p>
+      <p>Ich besuche <b>ihn</b>. Er besucht <b>mich</b>. Wir sehen <b>euch</b> morgen.</p>
+    </div>
+
+    <div class="panel">
       <h2>müssen i dürfen – musieć i wolno</h2>
       <table>
         <tr><th></th><th>müssen</th><th>dürfen</th></tr>
@@ -574,6 +592,96 @@ const CARDS = [
     ex: "Im Büro muss man <mark>pünktlich</mark> sein.", exPl: "W biurze trzeba być punktualnym." },
   { cat: "🚫 Wolno i trzeba", emoji: "📜", de: "die Hausordnung", pl: "regulamin domu",
     ex: "In der <mark>Hausordnung</mark> steht: Man muss den Müll trennen.", exPl: "W regulaminie domu jest napisane: trzeba segregować śmieci." },
+
+  // Porządek – dodatkowe zwroty
+  { cat: "🛏️ Porządek w mieszkaniu", emoji: "🧸", de: "das Zimmer aufräumen", pl: "posprzątać pokój",
+    ex: "Ich muss heute mein <mark>Zimmer aufräumen</mark>.", exPl: "Muszę dziś posprzątać swój pokój.", note: "czasownik rozdzielny: aufräumen" },
+  { cat: "🛏️ Porządek w mieszkaniu", emoji: "🧽", de: "die Küche sauber machen", pl: "posprzątać kuchnię (zrobić czystą)",
+    ex: "Nach dem Kochen <mark>mache ich die Küche sauber</mark>.", exPl: "Po gotowaniu sprzątam kuchnię." },
+  { cat: "🛏️ Porządek w mieszkaniu", emoji: "🍽️", de: "das Geschirr abwaschen", pl: "zmywać naczynia",
+    ex: "Nach dem Essen <mark>wasche ich das Geschirr ab</mark>.", exPl: "Po jedzeniu zmywam naczynia.", note: "das Geschirr = naczynia, zastawa" },
+  { cat: "🛏️ Porządek w mieszkaniu", emoji: "🛁", de: "das Bad putzen", pl: "sprzątać łazienkę",
+    ex: "Am Samstag <mark>putze ich das Bad</mark>.", exPl: "W sobotę sprzątam łazienkę." },
+
+  // Wygląd – dodatkowe
+  { cat: "🪞 Wygląd", emoji: "🖤", de: "dunkle Haare", pl: "ciemne włosy",
+    ex: "Sie hat <mark>dunkle Haare</mark> und braune Augen.", exPl: "Ma ciemne włosy i brązowe oczy." },
+  { cat: "🪞 Wygląd", emoji: "🩶", de: "graue Haare", pl: "siwe włosy",
+    ex: "Mein Opa hat <mark>graue Haare</mark>.", exPl: "Mój dziadek ma siwe włosy." },
+  { cat: "🪞 Wygląd", emoji: "🌀", de: "die Locken", pl: "loki, kręcone włosy",
+    ex: "Sie hat lange <mark>Locken</mark>.", exPl: "Ma długie loki.", note: "Locken = lockige Haare" },
+  { cat: "🪞 Wygląd", emoji: "💪", de: "kräftig", pl: "krzepki, mocnej budowy",
+    ex: "Er ist groß und <mark>kräftig</mark>.", exPl: "Jest wysoki i mocnej budowy." },
+
+  // Charakter i osobowość
+  { cat: "🙂 Charakter", emoji: "😊", de: "sympathisch / unsympathisch", pl: "sympatyczny / niesympatyczny",
+    ex: "Dein Freund ist sehr <mark>sympathisch</mark>, sein Chef ist <mark>unsympathisch</mark>.", exPl: "Twój przyjaciel jest bardzo sympatyczny, jego szef jest niesympatyczny." },
+  { cat: "🙂 Charakter", emoji: "🤗", de: "nett", pl: "miły",
+    ex: "Meine Nachbarin ist sehr <mark>nett</mark>.", exPl: "Moja sąsiadka jest bardzo miła." },
+  { cat: "🙂 Charakter", emoji: "🤝", de: "freundlich / unfreundlich", pl: "przyjazny / nieprzyjazny",
+    ex: "Die Verkäuferin ist <mark>freundlich</mark>, der Kellner ist <mark>unfreundlich</mark>.", exPl: "Sprzedawczyni jest przyjazna, kelner jest nieprzyjazny." },
+  { cat: "🙂 Charakter", emoji: "🧐", de: "interessant / uninteressant", pl: "interesujący / nieciekawy",
+    ex: "Das Buch ist <mark>interessant</mark>, der Film ist <mark>uninteressant</mark>.", exPl: "Książka jest interesująca, film jest nieciekawy." },
+  { cat: "🙂 Charakter", emoji: "🥱", de: "langweilig", pl: "nudny",
+    ex: "Die Besprechung war sehr <mark>langweilig</mark>.", exPl: "Narada była bardzo nudna." },
+  { cat: "🙂 Charakter", emoji: "😄", de: "fröhlich", pl: "wesoły",
+    ex: "Meine Schwester ist immer <mark>fröhlich</mark>.", exPl: "Moja siostra jest zawsze wesoła." },
+  { cat: "🙂 Charakter", emoji: "🎓", de: "intelligent", pl: "inteligentny",
+    ex: "Er ist sehr <mark>intelligent</mark>.", exPl: "Jest bardzo inteligentny." },
+  { cat: "🙂 Charakter", emoji: "😂", de: "lustig", pl: "zabawny",
+    ex: "Mein Kollege ist <mark>lustig</mark>.", exPl: "Mój kolega z pracy jest zabawny." },
+  { cat: "🙂 Charakter", emoji: "🎨", de: "kreativ", pl: "kreatywny",
+    ex: "Sie ist <mark>kreativ</mark> und malt gern.", exPl: "Jest kreatywna i chętnie maluje." },
+  { cat: "🙂 Charakter", emoji: "😌", de: "ruhig", pl: "spokojny (o osobie)",
+    ex: "Mein Bruder ist <mark>ruhig</mark> und spricht nicht viel.", exPl: "Mój brat jest spokojny i niewiele mówi.", note: "ruhig sein = też: być cicho / o morzu: spokojne" },
+
+  // Biernik (Akkusativ): zaimki i czasowniki
+  { cat: "👉 Biernik", emoji: "🙋", de: "mich", pl: "mnie, mnie (ich → mich)",
+    ex: "Er besucht <mark>mich</mark> am Wochenende.", exPl: "Odwiedza mnie w weekend.", note: "ich → mich" },
+  { cat: "👉 Biernik", emoji: "🫵", de: "dich", pl: "ciebie, cię (du → dich)",
+    ex: "Ich besuche <mark>dich</mark> morgen.", exPl: "Odwiedzę cię jutro.", note: "du → dich" },
+  { cat: "👉 Biernik", emoji: "👨", de: "ihn", pl: "jego, go (er → ihn)",
+    ex: "Mein Bruder ist nett. Ich mag <mark>ihn</mark>.", exPl: "Mój brat jest miły. Lubię go.", note: "er → ihn (rodzaj męski: też der Tisch → ihn)" },
+  { cat: "👉 Biernik", emoji: "🔹", de: "es", pl: "je, to (es → es)",
+    ex: "Das Kleid ist schön. Ich kaufe <mark>es</mark>.", exPl: "Sukienka jest ładna. Kupuję ją.", note: "es → es (rodzaj nijaki)" },
+  { cat: "👉 Biernik", emoji: "👩", de: "sie (ona)", pl: "ją (sie → sie)",
+    ex: "Meine Schwester ist nett. Ich besuche <mark>sie</mark> oft.", exPl: "Moja siostra jest miła. Często ją odwiedzam.", note: "sie → sie (jedna osoba, rodzaj żeński)" },
+  { cat: "👉 Biernik", emoji: "👨‍👩‍👧", de: "uns", pl: "nas (wir → uns)",
+    ex: "Sie besuchen <mark>uns</mark> im Sommer.", exPl: "Odwiedzają nas latem.", note: "wir → uns" },
+  { cat: "👉 Biernik", emoji: "👥", de: "euch", pl: "was (ihr → euch)",
+    ex: "Ich sehe <mark>euch</mark> morgen.", exPl: "Zobaczę was jutro.", note: "ihr → euch" },
+  { cat: "👉 Biernik", emoji: "🧑‍🤝‍🧑", de: "sie (oni)", pl: "ich, je (sie → sie)",
+    ex: "Die Nachbarn sind nett. Ich sehe <mark>sie</mark> jeden Tag.", exPl: "Sąsiedzi są mili. Widzę ich codziennie.", note: "sie → sie (liczba mnoga)" },
+  { cat: "👉 Biernik", emoji: "🎩", de: "Sie (Pan/Pani)", pl: "Pana/Panią (Sie → Sie)",
+    ex: "Kann ich <mark>Sie</mark> etwas fragen?", exPl: "Czy mogę Pana/Panią o coś zapytać?", note: "Sie pisane wielką literą = forma grzecznościowa" },
+  { cat: "👉 Biernik", emoji: "📮", de: "bekommen", pl: "dostawać, otrzymywać",
+    ex: "Ich <mark>bekomme</mark> einen Brief von meiner Schwester.", exPl: "Dostaję list od mojej siostry.", note: "bekommen + Akkusativ" },
+  { cat: "👉 Biernik", emoji: "🗣️", de: "erzählen", pl: "opowiadać",
+    ex: "Sie <mark>erzählt</mark> eine lustige Geschichte.", exPl: "Opowiada zabawną historię.", note: "erzählen + Akkusativ" },
+  { cat: "👉 Biernik", emoji: "🤦", de: "vergessen", pl: "zapominać",
+    ex: "Ich <mark>vergesse</mark> nie ihren Geburtstag.", exPl: "Nigdy nie zapominam o jej urodzinach.", note: "vergessen + Akkusativ; du vergisst" },
+
+  // Znaki i zakazy (nad jeziorem, w parku)
+  { cat: "🪧 Znaki i zakazy", emoji: "⛺", de: "Zelten erlaubt", pl: "biwakowanie dozwolone",
+    ex: "Hier ist <mark>Zelten erlaubt</mark>. Wir dürfen am See zelten.", exPl: "Tu wolno biwakować. Możemy rozbić namiot nad jeziorem." },
+  { cat: "🪧 Znaki i zakazy", emoji: "🏊", de: "Baden erlaubt", pl: "kąpiel dozwolona",
+    ex: "Im See ist <mark>Baden erlaubt</mark>.", exPl: "W jeziorze wolno się kąpać." },
+  { cat: "🪧 Znaki i zakazy", emoji: "🎣", de: "Angeln erlaubt", pl: "wędkowanie dozwolone",
+    ex: "Hier ist <mark>Angeln erlaubt</mark>.", exPl: "Tu wolno łowić ryby." },
+  { cat: "🪧 Znaki i zakazy", emoji: "🚴", de: "Fahrrad fahren erlaubt", pl: "jazda na rowerze dozwolona",
+    ex: "Im Park ist <mark>Fahrrad fahren erlaubt</mark>.", exPl: "W parku wolno jeździć na rowerze." },
+  { cat: "🪧 Znaki i zakazy", emoji: "🍖", de: "Grillen verboten", pl: "grillowanie zabronione",
+    ex: "<mark>Grillen</mark> ist hier <mark>verboten</mark>.", exPl: "Grillowanie jest tu zabronione." },
+  { cat: "🪧 Znaki i zakazy", emoji: "🚭", de: "Rauchen verboten", pl: "palenie zabronione",
+    ex: "<mark>Rauchen verboten</mark>! Hier darf man nicht rauchen.", exPl: "Palenie zabronione! Tu nie wolno palić." },
+  { cat: "🪧 Znaki i zakazy", emoji: "🗑️", de: "Müll abladen verboten", pl: "zakaz wyrzucania śmieci",
+    ex: "<mark>Müll abladen verboten</mark>! Man darf hier keinen Müll abladen.", exPl: "Zakaz wyrzucania śmieci! Nie wolno tu wyrzucać śmieci.", note: "abladen = zostawiać, wyrzucać (ładunek)" },
+  { cat: "🪧 Znaki i zakazy", emoji: "🅿️", de: "Parken verboten", pl: "parkowanie zabronione",
+    ex: "Hier ist <mark>Parken verboten</mark>.", exPl: "Tu parkowanie jest zabronione." },
+  { cat: "🪧 Znaki i zakazy", emoji: "📵", de: "Handys ausmachen", pl: "wyłączyć telefony",
+    ex: "Im Kino muss man die <mark>Handys ausmachen</mark>.", exPl: "W kinie trzeba wyłączyć telefony.", note: "czasownik rozdzielny: ausmachen" },
+  { cat: "🪧 Znaki i zakazy", emoji: "⛑️", de: "Helm tragen", pl: "nosić kask",
+    ex: "Auf dem Fahrrad muss man einen <mark>Helm tragen</mark>.", exPl: "Na rowerze trzeba nosić kask." },
 ];
 
 // Scenki: każda ma krótką historyjkę łączącą słowa w jeden wątek.
@@ -671,7 +779,7 @@ const SCENES = [
       ["Hast du am Samstag Zeit? – Leider <mark>habe ich keine Zeit</mark>. Aber ich <mark>freue mich auf</mark> Sonntag!", "Masz czas w sobotę? – Niestety nie mam czasu. Ale cieszę się na niedzielę!"],
       ["Pizza oder Pasta? – <mark>Das ist mir egal.</mark>", "Pizza czy makaron? – Jest mi wszystko jedno."],
     ] },
-  { title: "🛏️ Porządek w mieszkaniu", words: ["das Schlafzimmer", "das Wohnzimmer", "die Küche", "das Bad", "Ordnung machen", "ordentlich / unordentlich", "sauber / schmutzig", "das Bett machen", "lüften", "Staub wischen", "den Boden wischen", "putzen", "die Wäsche aufhängen", "bügeln", "den Tisch decken", "den Tisch abräumen", "die Spülmaschine ausräumen", "den Müll rausbringen", "den Müll trennen", "die Blumen gießen"],
+  { title: "🛏️ Porządek w mieszkaniu", words: ["das Schlafzimmer", "das Wohnzimmer", "die Küche", "das Bad", "Ordnung machen", "ordentlich / unordentlich", "sauber / schmutzig", "das Bett machen", "das Zimmer aufräumen", "lüften", "Staub wischen", "den Boden wischen", "putzen", "die Küche sauber machen", "das Bad putzen", "das Geschirr abwaschen", "die Wäsche aufhängen", "bügeln", "den Tisch decken", "den Tisch abräumen", "die Spülmaschine ausräumen", "den Müll rausbringen", "den Müll trennen", "die Blumen gießen"],
     story: [
       ["Am Samstag <mark>mache ich Ordnung</mark>. Zuerst <mark>lüfte</mark> ich das <mark>Schlafzimmer</mark> und <mark>mache das Bett</mark>.", "W sobotę robię porządek. Najpierw wietrzę sypialnię i ścielę łóżko."],
       ["Im <mark>Wohnzimmer</mark> <mark>wische ich Staub</mark>, dann <mark>wische ich den Boden</mark>. Mein Zimmer ist nicht mehr <mark>unordentlich</mark>.", "W salonie ścieram kurz, potem myję podłogę. Mój pokój nie jest już w bałaganie."],
@@ -679,7 +787,7 @@ const SCENES = [
       ["Ich <mark>hänge die Wäsche auf</mark> und <mark>bügle</mark> zwei Hemden. Ich <mark>gieße</mark> die <mark>Blumen</mark>.", "Rozwieszam pranie i prasuję dwie koszule. Podlewam kwiaty."],
       ["Abends <mark>decke ich den Tisch</mark>, nach dem Essen <mark>räume ich ihn ab</mark>. Zum Schluss <mark>trenne ich den Müll</mark> und <mark>bringe</mark> ihn <mark>raus</mark>.", "Wieczorem nakrywam do stołu, po jedzeniu sprzątam ze stołu. Na koniec segreguję śmieci i je wynoszę."],
     ] },
-  { title: "🪞 Wygląd", words: ["Wie sieht er / sie aus?", "aussehen", "groß / klein", "jung / alt", "schlank / sportlich", "lange / kurze Haare", "blond / braun / schwarz / rot / grau", "lockig / glatt", "die Augen", "der Bart", "die Brille", "gut aussehen / hübsch"],
+  { title: "🪞 Wygląd", words: ["Wie sieht er / sie aus?", "aussehen", "groß / klein", "jung / alt", "schlank / sportlich", "kräftig", "lange / kurze Haare", "blond / braun / schwarz / rot / grau", "dunkle Haare", "graue Haare", "lockig / glatt", "die Locken", "die Augen", "der Bart", "die Brille", "gut aussehen / hübsch"],
     story: [
       ["<mark>Wie sieht</mark> dein Bruder <mark>aus</mark>? – Er ist <mark>groß</mark> und <mark>sportlich</mark>.", "Jak wygląda Twój brat? – Jest wysoki i wysportowany."],
       ["Er hat <mark>kurze Haare</mark>, sie sind <mark>schwarz</mark> und <mark>lockig</mark>. Er hat <mark>blaue Augen</mark> und einen <mark>Bart</mark>.", "Ma krótkie włosy, są czarne i kręcone. Ma niebieskie oczy i brodę."],
@@ -700,6 +808,28 @@ const SCENES = [
       ["Hier <mark>darf</mark> man <mark>nicht</mark> <mark>rauchen</mark> und vor dem Haus <mark>nicht</mark> <mark>parken</mark>. Rauchen ist <mark>verboten</mark>.", "Tu nie wolno palić, a przed domem nie wolno parkować. Palenie jest zabronione."],
       ["In der Wohnung <mark>muss</mark> man <mark>die Schuhe ausziehen</mark>. Zu Hause <mark>muss</mark> ich nicht <mark>pünktlich sein</mark> – im Büro schon.", "W mieszkaniu trzeba zdjąć buty. W domu nie muszę być punktualny – w biurze tak."],
       ["<mark>Darf ich</mark> das Fenster öffnen? – Ja, das ist <mark>erlaubt</mark>. Du <mark>musst</mark> aber nicht! Du <mark>darfst</mark> auch warten.", "Czy mogę otworzyć okno? – Tak, to dozwolone. Ale nie musisz! Możesz też poczekać."],
+    ] },
+  { title: "🙂 Charakter", words: ["sympathisch / unsympathisch", "nett", "freundlich / unfreundlich", "interessant / uninteressant", "langweilig", "fröhlich", "lustig", "intelligent", "kreativ", "ruhig"],
+    story: [
+      ["Meine neue Kollegin ist <mark>sympathisch</mark> und <mark>nett</mark>. Sie ist immer <mark>freundlich</mark>.", "Moja nowa koleżanka z pracy jest sympatyczna i miła. Jest zawsze przyjazna."],
+      ["Sie ist <mark>fröhlich</mark> und <mark>lustig</mark>. Ihre Ideen sind <mark>kreativ</mark>.", "Jest wesoła i zabawna. Jej pomysły są kreatywne."],
+      ["Sie ist auch <mark>intelligent</mark>. Mit ihr ist die Arbeit nie <mark>langweilig</mark>, sondern <mark>interessant</mark>.", "Jest też inteligentna. Z nią praca nigdy nie jest nudna, tylko ciekawa."],
+      ["Mein Chef ist <mark>ruhig</mark>, aber leider <mark>unfreundlich</mark> und <mark>unsympathisch</mark>. Seine Besprechungen sind <mark>uninteressant</mark>.", "Mój szef jest spokojny, ale niestety nieprzyjazny i niesympatyczny. Jego narady są nieciekawe."],
+    ] },
+  { title: "👉 Biernik", words: ["mich", "dich", "ihn", "es", "sie (ona)", "uns", "euch", "sie (oni)", "Sie (Pan/Pani)", "bekommen", "erzählen", "vergessen"],
+    story: [
+      ["Ich habe einen Bruder. Ich besuche <mark>ihn</mark> oft, und er besucht <mark>mich</mark> auch.", "Mam brata. Często go odwiedzam, a on mnie też."],
+      ["Meine Schwester ist nett. Ich besuche <mark>sie</mark> am Wochenende. Das Geschenk? Ich kaufe <mark>es</mark> heute.", "Moja siostra jest miła. Odwiedzam ją w weekend. Prezent? Kupuję go dziś."],
+      ["Ich sehe <mark>euch</mark> morgen, und im Sommer besucht ihr <mark>uns</mark>. Ich vermisse <mark>dich</mark>!", "Zobaczę was jutro, a latem odwiedzicie nas. Tęsknię za Tobą!"],
+      ["Die Nachbarn sind nett. Ich sehe <mark>sie</mark> jeden Tag. Kann ich <mark>Sie</mark> etwas fragen?", "Sąsiedzi są mili. Widzę ich codziennie. Czy mogę Pana/Panią o coś zapytać?"],
+      ["Ich <mark>bekomme</mark> einen Brief. Meine Mutter <mark>erzählt</mark> eine Geschichte. Ich <mark>vergesse</mark> sie nie.", "Dostaję list. Moja mama opowiada historię. Nigdy jej nie zapominam."],
+    ] },
+  { title: "🪧 Znaki i zakazy", words: ["Baden erlaubt", "Angeln erlaubt", "Zelten erlaubt", "Grillen verboten", "Rauchen verboten", "Fahrrad fahren erlaubt", "Helm tragen", "Parken verboten", "Müll abladen verboten", "Handys ausmachen"],
+    story: [
+      ["Wir sind am See. Hier ist <mark>Baden erlaubt</mark> und <mark>Angeln erlaubt</mark>.", "Jesteśmy nad jeziorem. Tu wolno się kąpać i łowić ryby."],
+      ["<mark>Zelten erlaubt</mark>, aber <mark>Grillen verboten</mark> und <mark>Rauchen verboten</mark>.", "Biwakowanie dozwolone, ale grillowanie i palenie zabronione."],
+      ["Im Park ist <mark>Fahrrad fahren erlaubt</mark>. Auf dem Fahrrad muss man einen <mark>Helm tragen</mark>.", "W parku wolno jeździć na rowerze. Na rowerze trzeba nosić kask."],
+      ["<mark>Parken verboten</mark>! <mark>Müll abladen verboten</mark>! Und im Kino muss man die <mark>Handys ausmachen</mark>.", "Zakaz parkowania! Zakaz wyrzucania śmieci! A w kinie trzeba wyłączyć telefony."],
     ] },
 ];
 
