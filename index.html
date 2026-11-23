@@ -58,6 +58,7 @@
   .de { font-size: 1.7rem; font-weight: 700; overflow-wrap: anywhere; }
   .pl { font-size: 1.35rem; font-weight: 600; }
   .ex { font-size: 1.05rem; }
+  .sentence { font-size: 1.4rem; font-weight: 600; overflow-wrap: anywhere; }
   .ex-pl { font-size: .95rem; color: var(--muted); }
   .note { font-size: .85rem; color: var(--muted); font-style: italic; }
   .hint { position: absolute; bottom: 12px; font-size: .75rem; color: var(--muted); }
@@ -757,18 +758,17 @@ function render() {
       <div class="card ${flipped ? "flipped" : ""}" id="card">
         <div class="face front">
           <span class="cat-tag">${c.cat}</span>
-          <button class="speak" data-say="${encodeURIComponent(c.de)}" title="Posłuchaj" aria-label="Posłuchaj">🔊</button>
+          <button class="speak" data-say="${encodeURIComponent(c.ex.replace(/<[^>]+>/g, ""))}" title="Posłuchaj zdania" aria-label="Posłuchaj zdania">🔊</button>
           <div class="emoji">${c.emoji}</div>
-          <div class="de">${c.de}</div>
-          <div class="pl">${c.pl}</div>
-          <span class="hint">kliknij, aby zobaczyć przykład</span>
+          <div class="sentence">${c.ex}</div>
+          <div class="ex-pl">${c.exPl}</div>
+          <span class="hint">kliknij, aby zobaczyć wyrażenie</span>
         </div>
         <div class="face back">
           <span class="cat-tag">${known.has(list[pos]) ? "✓ umiem" : c.cat}</span>
-          <button class="speak" data-say="${encodeURIComponent(c.ex.replace(/<[^>]+>/g, ""))}" title="Posłuchaj przykładu" aria-label="Posłuchaj przykładu">🔊</button>
-          <div class="note">${c.de}</div>
-          <div class="ex">${c.ex}</div>
-          <div class="ex-pl">${c.exPl}</div>
+          <button class="speak" data-say="${encodeURIComponent(c.de)}" title="Posłuchaj wyrażenia" aria-label="Posłuchaj wyrażenia">🔊</button>
+          <div class="de">${c.de}</div>
+          <div class="pl">${c.pl}</div>
           ${c.note ? `<div class="note">${c.note}</div>` : ""}
         </div>
       </div>
