@@ -163,6 +163,54 @@
     </div>
 
     <div class="panel">
+      <h2>Imperativ – rozkaźnik (du / ihr)</h2>
+      <table>
+        <tr><th>du</th><th>→</th><th>rozkaźnik</th></tr>
+        <tr><td>du bringst … raus</td><td></td><td><b>Bring</b> … raus!</td></tr>
+        <tr><td>du vergisst</td><td></td><td><b>Vergiss</b> …!</td></tr>
+        <tr><td>du kommst</td><td></td><td><b>Komm</b> … (her)!</td></tr>
+        <tr><td>du wäschst</td><td></td><td><b>Wasch</b> …!</td></tr>
+        <tr><td>du bist ⚠️</td><td></td><td><b>Sei</b> …!</td></tr>
+        <tr><td>du hast ⚠️</td><td></td><td><b>Hab</b> …!</td></tr>
+        <tr><th>ihr</th><th>→</th><th></th></tr>
+        <tr><td>ihr macht … zu</td><td></td><td><b>Macht</b> … zu!</td></tr>
+        <tr><td>ihr seid ⚠️</td><td></td><td><b>Seid</b> …!</td></tr>
+      </table>
+      <p class="ex-pl">Bez „du” i „ihr”. Czasownik rozdzielny: przedrostek na końcu (Bring den Müll <b>raus</b>!).</p>
+    </div>
+
+    <div class="panel">
+      <h2>Perfekt czasowników nierozdzielnych</h2>
+      <table>
+        <tr><th>bezokolicznik</th><th>haben +</th><th>Partizip</th></tr>
+        <tr><td>gefallen</td><td rowspan="4">er/es/sie <b>hat</b></td><td><b>gefallen</b></td></tr>
+        <tr><td>bekommen</td><td><b>bekommen</b></td></tr>
+        <tr><td>erzählen</td><td><b>erzählt</b></td></tr>
+        <tr><td>vergessen</td><td><b>vergessen</b></td></tr>
+      </table>
+      <p class="ex-pl">Przedrostki be-, er-, ver-, ge- są nierozdzielne, więc w imiesłowie nie ma ge-.</p>
+      <p>Stefan <b>hat</b> die Stelle bei SUPS <b>bekommen</b>. Man <b>muss</b> die Hausordnung <b>lesen</b>.</p>
+      <p class="ex-pl">Satzklammer: odmieniony czasownik na 2. miejscu, imiesłów lub bezokolicznik na końcu zdania.</p>
+    </div>
+
+    <div class="panel">
+      <h2>Komparativ i Superlativ – stopniowanie</h2>
+      <table>
+        <tr><th>+</th><th>++</th><th>+++</th></tr>
+        <tr><td>billig</td><td>billig<b>er</b></td><td>am billig<b>sten</b></td></tr>
+        <tr><td>lang</td><td>l<b>ä</b>nger</td><td>am l<b>ä</b>ngsten</td></tr>
+        <tr><td>interessant</td><td>interessanter</td><td>am interessant<b>esten</b></td></tr>
+        <tr><td>wichtig</td><td>wichtiger</td><td>am wichtigsten</td></tr>
+        <tr><td>teuer</td><td>t<b>eu</b>rer</td><td>am teuersten</td></tr>
+        <tr><td>gut ⚠️</td><td><b>besser</b></td><td>am <b>besten</b></td></tr>
+        <tr><td>gern ⚠️</td><td><b>lieber</b></td><td>am <b>liebsten</b></td></tr>
+        <tr><td>viel ⚠️</td><td><b>mehr</b></td><td>am <b>meisten</b></td></tr>
+      </table>
+      <p>Die Hose war <b>billiger</b> <b>als</b> die Jacke. Sport ist <b>genauso</b> wichtig <b>wie</b> Kunst.</p>
+      <p class="ex-pl">Różnica: als (niż), równość: (genau)so … wie.</p>
+    </div>
+
+    <div class="panel">
       <h2>Akkusativ – zaimki osobowe (kogo? co?)</h2>
       <table>
         <tr><th>Nominativ</th><th>Akkusativ</th></tr>
@@ -547,7 +595,7 @@ const CARDS = [
   { cat: "👗 Ubrania", emoji: "👟", de: "die Schuhe", pl: "buty",
     ex: "Meine <mark>Schuhe</mark> sind sehr bequem.", exPl: "Moje buty są bardzo wygodne.", note: "die Schuhe – liczba mnoga" },
   { cat: "👗 Ubrania", emoji: "🧦", de: "die Socken", pl: "skarpetki",
-    ex: "Ich brauche neue <mark>Socken</mark>.", exPl: "Potrzebuję nowych skarpetek." },
+    ex: "Ich brauche neue <mark>Socken</mark>.", exPl: "Potrzebuję nowych skarpetek.", note: "die Socke / der Strumpf (pończocha, długa skarpeta)" },
   { cat: "👗 Ubrania", emoji: "🪝", de: "anziehen / ausziehen", pl: "zakładać / zdejmować",
     ex: "Ich <mark>ziehe</mark> die Jacke <mark>an</mark> und die Schuhe <mark>aus</mark>.", exPl: "Zakładam kurtkę i zdejmuję buty.", note: "czasowniki rozdzielne; sich anziehen = ubierać się" },
   { cat: "👗 Ubrania", emoji: "🪞", de: "anprobieren", pl: "przymierzać",
@@ -682,6 +730,128 @@ const CARDS = [
     ex: "Im Kino muss man die <mark>Handys ausmachen</mark>.", exPl: "W kinie trzeba wyłączyć telefony.", note: "czasownik rozdzielny: ausmachen" },
   { cat: "🪧 Znaki i zakazy", emoji: "⛑️", de: "Helm tragen", pl: "nosić kask",
     ex: "Auf dem Fahrrad muss man einen <mark>Helm tragen</mark>.", exPl: "Na rowerze trzeba nosić kask." },
+  { cat: "🪧 Znaki i zakazy", emoji: "🅿️", de: "Parken erlaubt", pl: "parkowanie dozwolone",
+    ex: "Auf dem Parkplatz ist <mark>Parken erlaubt</mark>.", exPl: "Na parkingu wolno parkować." },
+
+  // Moja opinia (podręcznik, L21)
+  { cat: "🗣️ Moja opinia", emoji: "✅", de: "Das ist (doch) erlaubt.", pl: "To (przecież) dozwolone.",
+    ex: "Grillen im Park? <mark>Das ist doch erlaubt</mark>.", exPl: "Grillowanie w parku? Przecież to dozwolone." },
+  { cat: "🗣️ Moja opinia", emoji: "❌", de: "Das ist (doch) verboten.", pl: "To (przecież) zabronione.",
+    ex: "Müll in den Wald werfen? <mark>Das ist doch verboten</mark>!", exPl: "Wyrzucać śmieci do lasu? Przecież to zabronione!" },
+  { cat: "🗣️ Moja opinia", emoji: "👌", de: "Das ist kein Problem.", pl: "To nie jest problem.",
+    ex: "Ich denke, <mark>das ist kein Problem</mark>.", exPl: "Myślę, że to nie problem." },
+  { cat: "🗣️ Moja opinia", emoji: "😌", de: "Das stört mich nicht.", pl: "To mi nie przeszkadza.",
+    ex: "Laute Musik? <mark>Das stört mich gar nicht</mark>.", exPl: "Głośna muzyka? Wcale mi to nie przeszkadza.", note: "gar nicht / überhaupt nicht = wcale nie; stören + Akkusativ (mich)" },
+  { cat: "🗣️ Moja opinia", emoji: "😤", de: "Das stört mich (sehr).", pl: "To mi (bardzo) przeszkadza.",
+    ex: "Der Rauch <mark>stört mich sehr</mark>.", exPl: "Dym bardzo mi przeszkadza.", note: "sehr / total = bardzo" },
+  { cat: "🗣️ Moja opinia", emoji: "⚠️", de: "gefährlich", pl: "niebezpieczny",
+    ex: "Ich denke, das ist wirklich <mark>gefährlich</mark>.", exPl: "Myślę, że to naprawdę niebezpieczne." },
+  { cat: "🗣️ Moja opinia", emoji: "😢", de: "traurig / unglaublich", pl: "smutny / niewiarygodny",
+    ex: "Das ist <mark>traurig</mark>. Das ist <mark>unglaublich</mark>!", exPl: "To smutne. To niewiarygodne!" },
+  { cat: "🗣️ Moja opinia", emoji: "🌲", de: "Müll in die Natur werfen", pl: "wyrzucać śmieci do natury",
+    ex: "Viele Leute <mark>werfen Müll in die Natur</mark>.", exPl: "Wielu ludzi wyrzuca śmieci do natury.", note: "werfen: du wirfst, er wirft" },
+  { cat: "🗣️ Moja opinia", emoji: "👎", de: "Ich finde das gar nicht gut.", pl: "Wcale mi się to nie podoba.",
+    ex: "Müll in die Natur werfen? <mark>Ich finde das gar nicht gut</mark>.", exPl: "Wyrzucać śmieci do natury? Wcale mi się to nie podoba." },
+  { cat: "🗣️ Moja opinia", emoji: "🛋️", de: "gemütlich", pl: "przytulny, miły",
+    ex: "Das Grillfest ist sehr <mark>gemütlich</mark>.", exPl: "Grillowanie jest bardzo miłe (przytulne)." },
+  { cat: "🗣️ Moja opinia", emoji: "🤝", de: "gemeinsam / zusammen", pl: "razem",
+    ex: "Man grillt <mark>gemeinsam</mark> und isst <mark>zusammen</mark>.", exPl: "Grilluje się razem i je razem." },
+  { cat: "🗣️ Moja opinia", emoji: "🌍", de: "die Umwelt", pl: "środowisko",
+    ex: "Man muss an die <mark>Umwelt</mark> denken.", exPl: "Trzeba myśleć o środowisku." },
+
+  // Grillfest i Hausordnung (podręcznik, L21)
+  { cat: "🍖 Grillfest i blok", emoji: "🎉", de: "das Grillfest", pl: "grill (impreza)",
+    ex: "Ich mag <mark>Grillfeste</mark> mit Freunden.", exPl: "Lubię grillowanie z przyjaciółmi." },
+  { cat: "🍖 Grillfest i blok", emoji: "🔥", de: "grillen", pl: "grillować",
+    ex: "Darf man auf dem Balkon <mark>grillen</mark>?", exPl: "Czy wolno grillować na balkonie?" },
+  { cat: "🍖 Grillfest i blok", emoji: "🪴", de: "der Balkon", pl: "balkon",
+    ex: "Wir sitzen abends auf dem <mark>Balkon</mark>.", exPl: "Wieczorem siedzimy na balkonie." },
+  { cat: "🍖 Grillfest i blok", emoji: "🪑", de: "die Terrasse", pl: "taras",
+    ex: "Auf der <mark>Terrasse</mark> ist Grillen erlaubt.", exPl: "Na tarasie grillowanie jest dozwolone." },
+  { cat: "🍖 Grillfest i blok", emoji: "🌳", de: "der Garten", pl: "ogród",
+    ex: "Im <mark>Garten</mark> darf man nicht zu laut sein.", exPl: "W ogrodzie nie wolno być zbyt głośno." },
+  { cat: "🍖 Grillfest i blok", emoji: "🏢", de: "das Mehrfamilienhaus", pl: "dom wielorodzinny, blok",
+    ex: "Wir wohnen in einem <mark>Mehrfamilienhaus</mark>.", exPl: "Mieszkamy w domu wielorodzinnym." },
+  { cat: "🍖 Grillfest i blok", emoji: "🔑", de: "der Mieter / die Mieterin", pl: "najemca / najemczyni",
+    ex: "Als <mark>Mieter</mark> muss man die Hausordnung lesen.", exPl: "Jako najemca trzeba przeczytać regulamin domu." },
+  { cat: "🍖 Grillfest i blok", emoji: "🏘️", de: "der Nachbar / die Nachbarin", pl: "sąsiad / sąsiadka",
+    ex: "Man darf die <mark>Nachbarn</mark> nicht stören.", exPl: "Nie wolno przeszkadzać sąsiadom." },
+  { cat: "🍖 Grillfest i blok", emoji: "🚪", de: "die Haustür", pl: "drzwi wejściowe do domu",
+    ex: "Die <mark>Haustüren</mark> müssen immer geschlossen bleiben.", exPl: "Drzwi wejściowe muszą być zawsze zamknięte." },
+  { cat: "🍖 Grillfest i blok", emoji: "🪜", de: "der Hausflur", pl: "korytarz, klatka schodowa",
+    ex: "Der <mark>Hausflur</mark> muss sauber sein.", exPl: "Klatka schodowa musi być czysta." },
+  { cat: "🍖 Grillfest i blok", emoji: "🔒", de: "geschlossen bleiben", pl: "pozostać zamkniętym",
+    ex: "Die Tür muss <mark>geschlossen bleiben</mark>.", exPl: "Drzwi muszą pozostać zamknięte." },
+  { cat: "🍖 Grillfest i blok", emoji: "🧼", de: "sauber halten", pl: "utrzymywać w czystości",
+    ex: "Man muss den Hausflur <mark>sauber halten</mark>.", exPl: "Trzeba utrzymywać klatkę schodową w czystości." },
+  { cat: "🍖 Grillfest i blok", emoji: "🥬", de: "der Tofu", pl: "tofu",
+    ex: "Wir grillen Gemüse und <mark>Tofu</mark>.", exPl: "Grillujemy warzywa i tofu." },
+  { cat: "🍖 Grillfest i blok", emoji: "💡", de: "der Tipp", pl: "wskazówka, rada",
+    ex: "Mein <mark>Tipp</mark>: Denk an die Umwelt!", exPl: "Moja rada: myśl o środowisku!" },
+
+  // Rozkaźnik du / ihr (podręcznik, L19)
+  { cat: "📣 Rozkaźnik", emoji: "🗑️", de: "Bring … raus!", pl: "Wynieś … ! (du)",
+    ex: "<mark>Bring</mark> bitte den Müll <mark>raus</mark>!", exPl: "Wynieś proszę śmieci!", note: "du bringst … raus → Bring … raus!" },
+  { cat: "📣 Rozkaźnik", emoji: "🔑", de: "Vergiss … nicht!", pl: "Nie zapomnij … ! (du)",
+    ex: "<mark>Vergiss</mark> deinen Schlüssel nicht!", exPl: "Nie zapomnij klucza!", note: "du vergisst → Vergiss!" },
+  { cat: "📣 Rozkaźnik", emoji: "👋", de: "Komm (her)!", pl: "Przyjdź (tutaj)! (du)",
+    ex: "<mark>Komm</mark> bitte <mark>her</mark>!", exPl: "Chodź proszę tutaj!", note: "du kommst → Komm!" },
+  { cat: "📣 Rozkaźnik", emoji: "🧺", de: "Wasch …!", pl: "Wypierz / umyj … ! (du)",
+    ex: "<mark>Wasch</mark> bitte die Wäsche!", exPl: "Zrób proszę pranie!", note: "du wäschst → Wasch! (ä → a)" },
+  { cat: "📣 Rozkaźnik", emoji: "🤫", de: "Sei …!", pl: "Bądź … ! (du)",
+    ex: "<mark>Sei</mark> bitte leise!", exPl: "Bądź proszę cicho!", note: "wyjątek: du bist → Sei!" },
+  { cat: "📣 Rozkaźnik", emoji: "💪", de: "Hab …!", pl: "Miej … ! (du)",
+    ex: "<mark>Hab</mark> keine Angst!", exPl: "Nie bój się!", note: "wyjątek: du hast → Hab!" },
+  { cat: "📣 Rozkaźnik", emoji: "🚪", de: "Macht … zu!", pl: "Zamknijcie … ! (ihr)",
+    ex: "<mark>Macht</mark> bitte die Tür <mark>zu</mark>!", exPl: "Zamknijcie proszę drzwi!", note: "ihr macht … zu → Macht … zu! (bez „ihr”)" },
+  { cat: "📣 Rozkaźnik", emoji: "🙊", de: "Seid …!", pl: "Bądźcie … ! (ihr)",
+    ex: "<mark>Seid</mark> bitte leise!", exPl: "Bądźcie proszę cicho!", note: "ihr seid → Seid!" },
+
+  // Perfekt czasowników nierozdzielnych (podręcznik, L20)
+  { cat: "⏪ Perfekt bez ge-", emoji: "👍", de: "hat gefallen", pl: "podobało się",
+    ex: "Der Film <mark>hat</mark> mir <mark>gefallen</mark>.", exPl: "Film mi się podobał.", note: "gefallen → gefallen (przedrostek ge- jest już w czasowniku)" },
+  { cat: "⏪ Perfekt bez ge-", emoji: "💼", de: "hat bekommen", pl: "dostał(a)",
+    ex: "Stefan <mark>hat</mark> die Stelle bei SUPS <mark>bekommen</mark>.", exPl: "Stefan dostał posadę w SUPS.", note: "bekommen → bekommen (be-, bez ge-)" },
+  { cat: "⏪ Perfekt bez ge-", emoji: "🗣️", de: "hat erzählt", pl: "opowiedział(a)",
+    ex: "Sie <mark>hat</mark> eine lustige Geschichte <mark>erzählt</mark>.", exPl: "Opowiedziała zabawną historię.", note: "erzählen → erzählt (er-, bez ge-)" },
+  { cat: "⏪ Perfekt bez ge-", emoji: "🤦", de: "hat vergessen", pl: "zapomniał(a)",
+    ex: "Ich <mark>habe</mark> meinen Schlüssel <mark>vergessen</mark>.", exPl: "Zapomniałem klucza.", note: "vergessen → vergessen (ver-, bez ge-)" },
+
+  // Ubrania – dodatkowe (podręcznik, L22)
+  { cat: "👗 Ubrania", emoji: "🎩", de: "der Hut", pl: "kapelusz",
+    ex: "Er trägt einen <mark>Hut</mark> und einen Mantel.", exPl: "Ma na sobie kapelusz i płaszcz.", note: "pl: die Hüte" },
+  { cat: "👗 Ubrania", emoji: "🔍", de: "Wer ist das?", pl: "Kto to jest?",
+    ex: "<mark>Wer ist das?</mark> – Die Person trägt eine Jeans und einen blauen Pullover.", exPl: "Kto to jest? – Ta osoba ma na sobie dżinsy i niebieski sweter." },
+  { cat: "👗 Ubrania", emoji: "🧵", de: "nähen", pl: "szyć",
+    ex: "Er <mark>näht</mark> T-Shirts und Röcke selbst.", exPl: "Sam szyje koszulki i spódnice.", note: "ich nähe, du nähst, er näht" },
+  { cat: "👗 Ubrania", emoji: "🔄", de: "tauschen", pl: "wymieniać",
+    ex: "Wir <mark>tauschen</mark> Kleidung beim Kleidertausch.", exPl: "Wymieniamy ubrania podczas wymiany ubrań." },
+  { cat: "👗 Ubrania", emoji: "♻️", de: "Secondhandkleidung", pl: "odzież z drugiej ręki",
+    ex: "<mark>Secondhandkleidung</mark> ist billig und gut für die Umwelt.", exPl: "Odzież z drugiej ręki jest tania i dobra dla środowiska." },
+
+  // Porównania (podręcznik, L22)
+  { cat: "📊 Porównania", emoji: "💸", de: "billig – billiger – am billigsten", pl: "tani – tańszy – najtańszy",
+    ex: "Die Hose war nicht <mark>billig</mark>. Die Jacke war <mark>billiger</mark>. Das T-Shirt war <mark>am billigsten</mark>.", exPl: "Spodnie nie były tanie. Kurtka była tańsza. Koszulka była najtańsza." },
+  { cat: "📊 Porównania", emoji: "💰", de: "teuer – teurer – am teuersten", pl: "drogi – droższy – najdroższy",
+    ex: "Der Mantel ist <mark>teurer</mark> als die Jacke. Das Kleid ist <mark>am teuersten</mark>.", exPl: "Płaszcz jest droższy niż kurtka. Sukienka jest najdroższa.", note: "teuer → teurer (e wypada)" },
+  { cat: "📊 Porównania", emoji: "📏", de: "lang – länger – am längsten", pl: "długi – dłuższy – najdłuższy",
+    ex: "Die Jacke ist <mark>länger</mark> als die Hose. Der Mantel ist <mark>am längsten</mark>.", exPl: "Kurtka jest dłuższa niż spodnie. Płaszcz jest najdłuższy.", note: "a → ä" },
+  { cat: "📊 Porównania", emoji: "🏙️", de: "groß – größer – am größten", pl: "duży – większy – największy",
+    ex: "Tokio ist <mark>größer</mark> als Berlin. Tokio ist <mark>am größten</mark>.", exPl: "Tokio jest większe niż Berlin. Tokio jest największe.", note: "o → ö; ß zostaje" },
+  { cat: "📊 Porównania", emoji: "🧐", de: "interessant – interessanter – am interessantesten", pl: "ciekawy – ciekawszy – najciekawszy",
+    ex: "Das Buch ist <mark>interessanter</mark> als der Film.", exPl: "Książka jest ciekawsza niż film.", note: "przy -t / -d / -s: am …-esten" },
+  { cat: "📊 Porównania", emoji: "⭐", de: "wichtig – wichtiger – am wichtigsten", pl: "ważny – ważniejszy – najważniejszy",
+    ex: "Ich finde Sport <mark>wichtiger</mark> als Kunst.", exPl: "Uważam, że sport jest ważniejszy niż sztuka." },
+  { cat: "📊 Porównania", emoji: "🥇", de: "gut – besser – am besten", pl: "dobry – lepszy – najlepszy",
+    ex: "Die Hose ist <mark>besser</mark>, der Pullover ist <mark>am besten</mark>.", exPl: "Spodnie są lepsze, sweter jest najlepszy.", note: "nieregularne!" },
+  { cat: "📊 Porównania", emoji: "💖", de: "gern – lieber – am liebsten", pl: "chętnie – chętniej – najchętniej",
+    ex: "Ich gehe <mark>lieber</mark> ins Kino. <mark>Am liebsten</mark> bleibe ich zu Hause.", exPl: "Wolę iść do kina. Najchętniej zostaję w domu.", note: "nieregularne!" },
+  { cat: "📊 Porównania", emoji: "➕", de: "viel – mehr – am meisten", pl: "dużo – więcej – najwięcej",
+    ex: "Ich habe <mark>mehr</mark> Zeit als du. Er hat <mark>am meisten</mark> Zeit.", exPl: "Mam więcej czasu niż Ty. On ma najwięcej czasu.", note: "nieregularne!" },
+  { cat: "📊 Porównania", emoji: "🟰", de: "genauso … wie / … als", pl: "tak samo … jak / bardziej … niż",
+    ex: "Sport ist <mark>genauso wichtig wie</mark> Kunst. Sport ist <mark>wichtiger als</mark> Musik.", exPl: "Sport jest tak samo ważny jak sztuka. Sport jest ważniejszy niż muzyka.", note: "równość: wie; różnica: als" },
+  { cat: "📊 Porównania", emoji: "😎", de: "besonders gern / nicht so gern", pl: "szczególnie chętnie / niezbyt chętnie",
+    ex: "Er näht <mark>besonders gern</mark> T-Shirts, Röcke näht er <mark>nicht so gern</mark>.", exPl: "Szczególnie chętnie szyje koszulki, spódnice szyje niezbyt chętnie.", note: "też: cool = fajny, langweilig = nudny" },
 ];
 
 // Scenki: każda ma krótką historyjkę łączącą słowa w jeden wątek.
@@ -794,7 +964,7 @@ const SCENES = [
       ["Und deine Schwester? – Sie ist <mark>klein</mark> und <mark>schlank</mark>. Sie hat <mark>lange</mark> <mark>blonde</mark> Haare, <mark>glatt</mark>, und trägt eine <mark>Brille</mark>.", "A Twoja siostra? – Jest niska i szczupła. Ma długie jasne włosy, proste, i nosi okulary."],
       ["Ist sie <mark>jung</mark>? – Ja, sie ist zwanzig. Sie <mark>sieht</mark> immer <mark>gut aus</mark>!", "Czy jest młoda? – Tak, ma dwadzieścia lat. Zawsze dobrze wygląda!"],
     ] },
-  { title: "👗 Ubrania", words: ["die Kleidung", "tragen", "rot / blau / grün / gelb / schwarz / weiß", "das T-Shirt", "das Hemd", "die Bluse", "der Pullover", "die Hose / die Jeans", "die Jacke", "der Mantel", "das Kleid", "der Rock", "der Anzug", "die Mütze / der Schal / die Handschuhe", "die Schuhe", "die Socken", "anziehen / ausziehen", "anprobieren", "die Größe", "zu groß / zu klein", "passen", "gefallen", "Das steht dir gut.", "bequem"],
+  { title: "👗 Ubrania", words: ["die Kleidung", "tragen", "rot / blau / grün / gelb / schwarz / weiß", "das T-Shirt", "das Hemd", "die Bluse", "der Pullover", "die Hose / die Jeans", "die Jacke", "der Mantel", "das Kleid", "der Rock", "der Anzug", "der Hut", "die Mütze / der Schal / die Handschuhe", "die Schuhe", "die Socken", "Wer ist das?", "anziehen / ausziehen", "anprobieren", "die Größe", "zu groß / zu klein", "passen", "gefallen", "Das steht dir gut.", "bequem", "nähen", "tauschen", "Secondhandkleidung"],
     story: [
       ["Ich brauche neue <mark>Kleidung</mark>. Im Geschäft suche ich eine <mark>Hose</mark> und einen <mark>Pullover</mark>.", "Potrzebuję nowych ubrań. W sklepie szukam spodni i swetra."],
       ["Die Verkäuferin fragt: „Welche <mark>Größe</mark> haben Sie?“ – Ich möchte die Hose <mark>anprobieren</mark>.", "Sprzedawczyni pyta: „Jaki ma Pan rozmiar?” – Chcę przymierzyć spodnie."],
@@ -824,12 +994,46 @@ const SCENES = [
       ["Die Nachbarn sind nett. Ich sehe <mark>sie</mark> jeden Tag. Kann ich <mark>Sie</mark> etwas fragen?", "Sąsiedzi są mili. Widzę ich codziennie. Czy mogę Pana/Panią o coś zapytać?"],
       ["Ich <mark>bekomme</mark> einen Brief. Meine Mutter <mark>erzählt</mark> eine Geschichte. Ich <mark>vergesse</mark> sie nie.", "Dostaję list. Moja mama opowiada historię. Nigdy jej nie zapominam."],
     ] },
-  { title: "🪧 Znaki i zakazy", words: ["Baden erlaubt", "Angeln erlaubt", "Zelten erlaubt", "Grillen verboten", "Rauchen verboten", "Fahrrad fahren erlaubt", "Helm tragen", "Parken verboten", "Müll abladen verboten", "Handys ausmachen"],
+  { title: "🪧 Znaki i zakazy", words: ["Baden erlaubt", "Angeln erlaubt", "Zelten erlaubt", "Grillen verboten", "Rauchen verboten", "Fahrrad fahren erlaubt", "Helm tragen", "Parken erlaubt", "Parken verboten", "Müll abladen verboten", "Handys ausmachen"],
     story: [
       ["Wir sind am See. Hier ist <mark>Baden erlaubt</mark> und <mark>Angeln erlaubt</mark>.", "Jesteśmy nad jeziorem. Tu wolno się kąpać i łowić ryby."],
       ["<mark>Zelten erlaubt</mark>, aber <mark>Grillen verboten</mark> und <mark>Rauchen verboten</mark>.", "Biwakowanie dozwolone, ale grillowanie i palenie zabronione."],
       ["Im Park ist <mark>Fahrrad fahren erlaubt</mark>. Auf dem Fahrrad muss man einen <mark>Helm tragen</mark>.", "W parku wolno jeździć na rowerze. Na rowerze trzeba nosić kask."],
-      ["<mark>Parken verboten</mark>! <mark>Müll abladen verboten</mark>! Und im Kino muss man die <mark>Handys ausmachen</mark>.", "Zakaz parkowania! Zakaz wyrzucania śmieci! A w kinie trzeba wyłączyć telefony."],
+      ["Auf dem Parkplatz ist <mark>Parken erlaubt</mark>, aber vor dem Haus <mark>Parken verboten</mark>! <mark>Müll abladen verboten</mark>! Und im Kino muss man die <mark>Handys ausmachen</mark>.", "Na parkingu wolno parkować, ale przed domem jest zakaz parkowania! Zakaz wyrzucania śmieci! A w kinie trzeba wyłączyć telefony."],
+    ] },
+  { title: "🗣️ Moja opinia", words: ["Das ist (doch) erlaubt.", "Das ist (doch) verboten.", "Das ist kein Problem.", "Das stört mich nicht.", "Das stört mich (sehr).", "gefährlich", "traurig / unglaublich", "Müll in die Natur werfen", "Ich finde das gar nicht gut.", "die Umwelt", "gemütlich", "gemeinsam / zusammen"],
+    story: [
+      ["Grillen im Park? <mark>Das ist doch erlaubt</mark>. Ich denke, <mark>das ist kein Problem</mark>.", "Grillowanie w parku? Przecież to dozwolone. Myślę, że to nie problem."],
+      ["Laute Musik? <mark>Das stört mich nicht</mark>. Aber der Rauch <mark>stört mich sehr</mark>.", "Głośna muzyka? Nie przeszkadza mi to. Ale dym bardzo mi przeszkadza."],
+      ["<mark>Müll in die Natur werfen</mark>? <mark>Das ist doch verboten</mark>! <mark>Ich finde das gar nicht gut</mark>. Das ist <mark>traurig</mark> und <mark>gefährlich</mark> für die <mark>Umwelt</mark>.", "Wyrzucać śmieci do natury? Przecież to zabronione! Wcale mi się to nie podoba. To smutne i niebezpieczne dla środowiska."],
+      ["Aber <mark>gemeinsam</mark> grillen ist <mark>gemütlich</mark> – wir essen <mark>zusammen</mark>. Das ist <mark>unglaublich</mark> schön!", "Ale wspólne grillowanie jest miłe – jemy razem. To niewiarygodnie fajne!"],
+    ] },
+  { title: "🍖 Grillfest i blok", words: ["das Grillfest", "grillen", "der Balkon", "die Terrasse", "der Garten", "das Mehrfamilienhaus", "der Mieter / die Mieterin", "der Nachbar / die Nachbarin", "die Haustür", "geschlossen bleiben", "der Hausflur", "sauber halten", "der Tofu", "der Tipp"],
+    story: [
+      ["Wir wohnen in einem <mark>Mehrfamilienhaus</mark>. Als <mark>Mieter</mark> frage ich: Darf man auf dem <mark>Balkon</mark> <mark>grillen</mark>?", "Mieszkamy w bloku. Jako najemca pytam: czy wolno grillować na balkonie?"],
+      ["In der Hausordnung steht: Auf der <mark>Terrasse</mark> und im <mark>Garten</mark> ist Grillen nicht erlaubt.", "W regulaminie jest napisane: na tarasie i w ogrodzie grillowanie nie jest dozwolone."],
+      ["Die <mark>Haustüren</mark> müssen <mark>geschlossen bleiben</mark>. Man muss den <mark>Hausflur</mark> <mark>sauber halten</mark>.", "Drzwi wejściowe muszą pozostać zamknięte. Trzeba utrzymywać klatkę schodową w czystości."],
+      ["Mein <mark>Nachbar</mark> mag <mark>Grillfeste</mark>. Er grillt Gemüse und <mark>Tofu</mark>. Sein <mark>Tipp</mark>: Immer an die Nachbarn denken!", "Mój sąsiad lubi grillowanie. Grilluje warzywa i tofu. Jego rada: zawsze myśl o sąsiadach!"],
+    ] },
+  { title: "📣 Rozkaźnik", words: ["Komm (her)!", "Bring … raus!", "Vergiss … nicht!", "Wasch …!", "Sei …!", "Hab …!", "Macht … zu!", "Seid …!"],
+    story: [
+      ["Mutter ruft: „<mark>Komm</mark> bitte <mark>her</mark>! <mark>Bring</mark> den Müll <mark>raus</mark>!“", "Mama woła: „Chodź tu! Wynieś śmieci!”"],
+      ["„<mark>Vergiss</mark> deinen Schlüssel nicht! <mark>Wasch</mark> die Wäsche!“", "„Nie zapomnij klucza! Zrób pranie!”"],
+      ["„Kinder, <mark>macht</mark> die Tür <mark>zu</mark> und <mark>seid</mark> leise!“", "„Dzieci, zamknijcie drzwi i bądźcie cicho!”"],
+      ["„<mark>Sei</mark> nicht traurig und <mark>hab</mark> keine Angst!“", "„Nie bądź smutny i nie bój się!”"],
+    ] },
+  { title: "⏪ Perfekt bez ge-", words: ["hat bekommen", "hat erzählt", "hat vergessen", "hat gefallen"],
+    story: [
+      ["Gestern <mark>hat</mark> Stefan die Stelle bei SUPS <mark>bekommen</mark>.", "Wczoraj Stefan dostał posadę w SUPS."],
+      ["Er <mark>hat</mark> eine lustige Geschichte <mark>erzählt</mark>. Aber er <mark>hat</mark> seinen Schlüssel <mark>vergessen</mark>.", "Opowiedział zabawną historię. Ale zapomniał klucza."],
+      ["Der Film <mark>hat</mark> ihm <mark>gefallen</mark>.", "Film mu się podobał."],
+    ] },
+  { title: "📊 Porównania", words: ["billig – billiger – am billigsten", "teuer – teurer – am teuersten", "lang – länger – am längsten", "groß – größer – am größten", "interessant – interessanter – am interessantesten", "wichtig – wichtiger – am wichtigsten", "gut – besser – am besten", "gern – lieber – am liebsten", "viel – mehr – am meisten", "genauso … wie / … als", "besonders gern / nicht so gern"],
+    story: [
+      ["Die Hose war nicht <mark>billig</mark>. Die Jacke war <mark>billiger</mark>. Das T-Shirt war <mark>am billigsten</mark>.", "Spodnie nie były tanie. Kurtka była tańsza. Koszulka była najtańsza."],
+      ["Der Mantel ist <mark>teurer</mark> als die Jacke, aber <mark>besser</mark>. Ich gehe <mark>lieber</mark> ins Geschäft als ins Internet.", "Płaszcz jest droższy niż kurtka, ale lepszy. Wolę iść do sklepu niż do internetu."],
+      ["Ich finde Sport <mark>wichtiger</mark> als Kunst, aber Musik ist <mark>genauso wichtig wie</mark> Sport.", "Uważam, że sport jest ważniejszy niż sztuka, ale muzyka jest tak samo ważna jak sport."],
+      ["Tokio ist <mark>am größten</mark>. Ich habe <mark>mehr</mark> Zeit als du, aber du hast <mark>am meisten</mark> Geld.", "Tokio jest największe. Mam więcej czasu niż Ty, ale Ty masz najwięcej pieniędzy."],
     ] },
 ];
 
