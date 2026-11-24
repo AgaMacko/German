@@ -180,6 +180,21 @@
     </div>
 
     <div class="panel">
+      <h2>Perfekt – haben czy sein, jak tworzyć Partizip II</h2>
+      <table>
+        <tr><th>typ</th><th>Partizip II</th><th>przykład</th></tr>
+        <tr><td>regularny</td><td>ge-…-<b>t</b></td><td>machen → <b>gemacht</b></td></tr>
+        <tr><td>nieregularny</td><td>ge-…-<b>en</b></td><td>essen → <b>gegessen</b></td></tr>
+        <tr><td>rozdzielny</td><td>przedrostek + <b>ge</b> + …</td><td>aufräumen → <b>aufgeräumt</b></td></tr>
+        <tr><td>nierozdzielny (be-, er-, ver-, ge-)</td><td>bez ge-</td><td>besuchen → <b>besucht</b></td></tr>
+        <tr><td>-ieren</td><td>bez ge-</td><td>telefonieren → <b>telefoniert</b></td></tr>
+      </table>
+      <p><b>haben</b> – większość czasowników: Ich <b>habe</b> Fisch <b>gegessen</b>.</p>
+      <p><b>sein</b> – ruch i zmiana miejsca/stanu (gehen, fahren, kommen, fliegen, bleiben, aufstehen, sein): Ich <b>bin</b> nach Berlin <b>gefahren</b>.</p>
+      <p class="ex-pl">Imiesłów zawsze na końcu zdania: Gestern habe ich mein Zimmer aufgeräumt.</p>
+    </div>
+
+    <div class="panel">
       <h2>Perfekt czasowników nierozdzielnych</h2>
       <table>
         <tr><th>bezokolicznik</th><th>haben +</th><th>Partizip</th></tr>
@@ -852,6 +867,97 @@ const CARDS = [
     ex: "Sport ist <mark>genauso wichtig wie</mark> Kunst. Sport ist <mark>wichtiger als</mark> Musik.", exPl: "Sport jest tak samo ważny jak sztuka. Sport jest ważniejszy niż muzyka.", note: "równość: wie; różnica: als" },
   { cat: "📊 Porównania", emoji: "😎", de: "besonders gern / nicht so gern", pl: "szczególnie chętnie / niezbyt chętnie",
     ex: "Er näht <mark>besonders gern</mark> T-Shirts, Röcke näht er <mark>nicht so gern</mark>.", exPl: "Szczególnie chętnie szyje koszulki, spódnice szyje niezbyt chętnie.", note: "też: cool = fajny, langweilig = nudny" },
+
+  // Perfekt z haben: regularne (ge-…-t)
+  { cat: "⏪ Perfekt z haben", emoji: "🛠️", de: "hat gemacht", pl: "zrobił(a)",
+    ex: "Was <mark>hast</mark> du gestern <mark>gemacht</mark>?", exPl: "Co robiłeś wczoraj?", note: "machen → gemacht (regularny: ge-…-t)" },
+  { cat: "⏪ Perfekt z haben", emoji: "🍲", de: "hat gekocht", pl: "ugotował(a)",
+    ex: "Mein Vater <mark>hat</mark> Suppe <mark>gekocht</mark>.", exPl: "Mój tata ugotował zupę.", note: "kochen → gekocht" },
+  { cat: "⏪ Perfekt z haben", emoji: "📚", de: "hat gelernt", pl: "uczył(a) się",
+    ex: "Ich <mark>habe</mark> gestern zwei Stunden Deutsch <mark>gelernt</mark>.", exPl: "Wczoraj uczyłem się niemieckiego przez dwie godziny.", note: "lernen → gelernt" },
+  { cat: "⏪ Perfekt z haben", emoji: "💼", de: "hat gearbeitet", pl: "pracował(a)",
+    ex: "Wir <mark>haben</mark> heute im Büro <mark>gearbeitet</mark>.", exPl: "Dziś pracowaliśmy w biurze.", note: "arbeiten → gearbeitet (po -t / -d dodajemy -et)" },
+  { cat: "⏪ Perfekt z haben", emoji: "🛍️", de: "hat gekauft", pl: "kupił(a)",
+    ex: "Ich <mark>habe</mark> eine neue Jacke <mark>gekauft</mark>.", exPl: "Kupiłem nową kurtkę.", note: "kaufen → gekauft" },
+  { cat: "⏪ Perfekt z haben", emoji: "🧹", de: "hat geputzt", pl: "posprzątał(a), wyczyścił(a)",
+    ex: "Sie <mark>hat</mark> das Bad <mark>geputzt</mark>.", exPl: "Posprzątała łazienkę.", note: "putzen → geputzt" },
+  { cat: "⏪ Perfekt z haben", emoji: "🏠", de: "hat gewohnt", pl: "mieszkał(a)",
+    ex: "Wir <mark>haben</mark> zwei Jahre in Berlin <mark>gewohnt</mark>.", exPl: "Mieszkaliśmy dwa lata w Berlinie.", note: "wohnen → gewohnt" },
+  { cat: "⏪ Perfekt z haben", emoji: "⚽", de: "hat gespielt", pl: "grał(a), bawił(a) się",
+    ex: "Die Kinder <mark>haben</mark> im Garten <mark>gespielt</mark>.", exPl: "Dzieci bawiły się w ogrodzie.", note: "spielen → gespielt" },
+  // nieregularne (ge-…-en)
+  { cat: "⏪ Perfekt z haben", emoji: "🐟", de: "hat gegessen", pl: "zjadł(a)",
+    ex: "Ich <mark>habe</mark> Fisch <mark>gegessen</mark>.", exPl: "Zjadłem rybę.", note: "essen → gegessen (nieregularny: ge-…-en)" },
+  { cat: "⏪ Perfekt z haben", emoji: "🍵", de: "hat getrunken", pl: "wypił(a)",
+    ex: "Er <mark>hat</mark> viel Wasser <mark>getrunken</mark>.", exPl: "Wypił dużo wody.", note: "trinken → getrunken" },
+  { cat: "⏪ Perfekt z haben", emoji: "✉️", de: "hat geschrieben", pl: "napisał(a)",
+    ex: "Ich <mark>habe</mark> einen Brief <mark>geschrieben</mark>.", exPl: "Napisałem list.", note: "schreiben → geschrieben" },
+  { cat: "⏪ Perfekt z haben", emoji: "🎬", de: "hat gesehen", pl: "zobaczył(a), obejrzał(a)",
+    ex: "<mark>Hast</mark> du den Film <mark>gesehen</mark>?", exPl: "Czy obejrzałeś ten film?", note: "sehen → gesehen" },
+  { cat: "⏪ Perfekt z haben", emoji: "📖", de: "hat gelesen", pl: "przeczytał(a)",
+    ex: "Sie <mark>hat</mark> ein Buch <mark>gelesen</mark>.", exPl: "Przeczytała książkę.", note: "lesen → gelesen" },
+  { cat: "⏪ Perfekt z haben", emoji: "😴", de: "hat geschlafen", pl: "spał(a)",
+    ex: "Ich <mark>habe</mark> acht Stunden <mark>geschlafen</mark>.", exPl: "Spałem osiem godzin.", note: "schlafen → geschlafen" },
+  { cat: "⏪ Perfekt z haben", emoji: "🚌", de: "hat genommen", pl: "wziął / wzięła",
+    ex: "Er <mark>hat</mark> den Bus <mark>genommen</mark>.", exPl: "Pojechał autobusem (wziął autobus).", note: "nehmen → genommen" },
+  { cat: "⏪ Perfekt z haben", emoji: "👓", de: "hat gefunden", pl: "znalazł(a)",
+    ex: "Ich <mark>habe</mark> meine Brille <mark>gefunden</mark>.", exPl: "Znalazłem swoje okulary.", note: "finden → gefunden" },
+  { cat: "⏪ Perfekt z haben", emoji: "🤝", de: "hat geholfen", pl: "pomógł / pomogła",
+    ex: "Er <mark>hat</mark> mir <mark>geholfen</mark>.", exPl: "Pomógł mi.", note: "helfen → geholfen (+ Dativ)" },
+  { cat: "⏪ Perfekt z haben", emoji: "👗", de: "hat getragen", pl: "nosił(a), miał(a) na sobie",
+    ex: "Sie <mark>hat</mark> ein rotes Kleid <mark>getragen</mark>.", exPl: "Miała na sobie czerwoną sukienkę.", note: "tragen → getragen" },
+  { cat: "⏪ Perfekt z haben", emoji: "🧼", de: "hat gewaschen", pl: "wyprał(a), umył(a)",
+    ex: "Ich <mark>habe</mark> die Wäsche <mark>gewaschen</mark>.", exPl: "Zrobiłem pranie.", note: "waschen → gewaschen" },
+
+  // Perfekt z sein (ruch, zmiana)
+  { cat: "🚶 Perfekt z sein", emoji: "🚶", de: "ist gegangen", pl: "poszedł / poszła",
+    ex: "Wir <mark>sind</mark> zum Strand <mark>gegangen</mark>.", exPl: "Poszliśmy na plażę.", note: "gehen → gegangen; sein + Partizip (ruch)" },
+  { cat: "🚶 Perfekt z sein", emoji: "🚆", de: "ist gefahren", pl: "pojechał(a)",
+    ex: "Ich <mark>bin</mark> mit dem Zug nach Berlin <mark>gefahren</mark>.", exPl: "Pojechałem pociągiem do Berlina.", note: "fahren → gefahren" },
+  { cat: "🚶 Perfekt z sein", emoji: "🏃", de: "ist gekommen", pl: "przyszedł / przyszła",
+    ex: "Er <mark>ist</mark> zu spät <mark>gekommen</mark>.", exPl: "Przyszedł za późno.", note: "kommen → gekommen" },
+  { cat: "🚶 Perfekt z sein", emoji: "✈️", de: "ist geflogen", pl: "poleciał(a)",
+    ex: "Wir <mark>sind</mark> nach Griechenland <mark>geflogen</mark>.", exPl: "Polecieliśmy do Grecji.", note: "fliegen → geflogen" },
+  { cat: "🚶 Perfekt z sein", emoji: "🏠", de: "ist geblieben", pl: "został(a)",
+    ex: "Ich <mark>bin</mark> zu Hause <mark>geblieben</mark>.", exPl: "Zostałem w domu.", note: "bleiben → geblieben" },
+  { cat: "🚶 Perfekt z sein", emoji: "⏰", de: "ist aufgestanden", pl: "wstał(a)",
+    ex: "Ich <mark>bin</mark> um sieben Uhr <mark>aufgestanden</mark>.", exPl: "Wstałem o siódmej.", note: "aufstehen → aufgestanden (rozdzielny + sein)" },
+  { cat: "🚶 Perfekt z sein", emoji: "🏊", de: "ist geschwommen", pl: "pływał(a)",
+    ex: "Er <mark>ist</mark> im See <mark>geschwommen</mark>.", exPl: "Pływał w jeziorze.", note: "schwimmen → geschwommen" },
+  { cat: "🚶 Perfekt z sein", emoji: "🏝️", de: "ist gewesen", pl: "był(a)",
+    ex: "Wir <mark>sind</mark> im Urlaub <mark>gewesen</mark>.", exPl: "Byliśmy na urlopie.", note: "sein → gewesen; w mowie często: ich war" },
+
+  // Perfekt: czasowniki rozdzielne (ge- w środku)
+  { cat: "🧩 Perfekt: rozdzielne", emoji: "🧸", de: "hat aufgeräumt", pl: "posprzątał(a)",
+    ex: "Ich <mark>habe</mark> mein Zimmer <mark>aufgeräumt</mark>.", exPl: "Posprzątałem swój pokój.", note: "auf·räumen → auf-ge-räumt: ge- wchodzi w środek" },
+  { cat: "🧩 Perfekt: rozdzielne", emoji: "🛒", de: "hat eingekauft", pl: "zrobił(a) zakupy",
+    ex: "Wir <mark>haben</mark> Gemüse <mark>eingekauft</mark>.", exPl: "Kupiliśmy warzywa.", note: "ein·kaufen → ein-ge-kauft" },
+  { cat: "🧩 Perfekt: rozdzielne", emoji: "🍽️", de: "hat abgewaschen", pl: "pozmywał(a)",
+    ex: "Wer <mark>hat</mark> das Geschirr <mark>abgewaschen</mark>?", exPl: "Kto pozmywał naczynia?", note: "ab·waschen → ab-ge-waschen" },
+  { cat: "🧩 Perfekt: rozdzielne", emoji: "🧺", de: "hat aufgehängt", pl: "rozwiesił(a)",
+    ex: "Er <mark>hat</mark> die Wäsche <mark>aufgehängt</mark>.", exPl: "Rozwiesił pranie.", note: "auf·hängen → auf-ge-hängt" },
+  { cat: "🧩 Perfekt: rozdzielne", emoji: "🧥", de: "hat angezogen", pl: "założył(a)",
+    ex: "Sie <mark>hat</mark> den Mantel <mark>angezogen</mark>.", exPl: "Założyła płaszcz.", note: "an·ziehen → an-ge-zogen" },
+  { cat: "🧩 Perfekt: rozdzielne", emoji: "👟", de: "hat ausgezogen", pl: "zdjął / zdjęła",
+    ex: "Ich <mark>habe</mark> die Schuhe <mark>ausgezogen</mark>.", exPl: "Zdjąłem buty.", note: "aus·ziehen → aus-ge-zogen" },
+  { cat: "🧩 Perfekt: rozdzielne", emoji: "📵", de: "hat ausgemacht", pl: "wyłączył(a)",
+    ex: "Ich <mark>habe</mark> das Handy <mark>ausgemacht</mark>.", exPl: "Wyłączyłem telefon.", note: "aus·machen → aus-ge-macht" },
+  { cat: "🧩 Perfekt: rozdzielne", emoji: "📞", de: "hat angerufen", pl: "zadzwonił(a)",
+    ex: "Ich <mark>habe</mark> dich gestern <mark>angerufen</mark>.", exPl: "Dzwoniłem do Ciebie wczoraj.", note: "an·rufen → an-ge-rufen (+ Akkusativ)" },
+
+  // Perfekt bez ge- (dodatkowe)
+  { cat: "⏪ Perfekt bez ge-", emoji: "👵", de: "hat besucht", pl: "odwiedził(a)",
+    ex: "Ich <mark>habe</mark> meine Großeltern <mark>besucht</mark>.", exPl: "Odwiedziłem dziadków.", note: "besuchen → besucht (be-, bez ge-)" },
+  { cat: "⏪ Perfekt bez ge-", emoji: "💡", de: "hat verstanden", pl: "zrozumiał(a)",
+    ex: "Ich <mark>habe</mark> das nicht <mark>verstanden</mark>.", exPl: "Nie zrozumiałem tego.", note: "verstehen → verstanden (ver-)" },
+  { cat: "⏪ Perfekt bez ge-", emoji: "📱", de: "hat telefoniert", pl: "rozmawiał(a) przez telefon",
+    ex: "Sie <mark>hat</mark> lange <mark>telefoniert</mark>.", exPl: "Długo rozmawiała przez telefon.", note: "czasowniki na -ieren: bez ge-" },
+  { cat: "⏪ Perfekt bez ge-", emoji: "🪞", de: "hat anprobiert", pl: "przymierzył(a)",
+    ex: "Ich <mark>habe</mark> die Hose <mark>anprobiert</mark>.", exPl: "Przymierzyłem spodnie.", note: "an·probieren → an-probiert (-ieren: bez ge-)" },
+  { cat: "⏪ Perfekt bez ge-", emoji: "🧾", de: "hat bezahlt", pl: "zapłacił(a)",
+    ex: "Wir <mark>haben</mark> die Rechnung <mark>bezahlt</mark>.", exPl: "Zapłaciliśmy rachunek.", note: "bezahlen → bezahlt (be-)" },
+  { cat: "⏪ Perfekt bez ge-", emoji: "🔑", de: "hat verloren", pl: "zgubił(a), przegrał(a)",
+    ex: "Ich <mark>habe</mark> meinen Schlüssel <mark>verloren</mark>.", exPl: "Zgubiłem klucz.", note: "verlieren → verloren (ver-)" },
 ];
 
 // Scenki: każda ma krótką historyjkę łączącą słowa w jeden wątek.
@@ -1022,11 +1128,35 @@ const SCENES = [
       ["„Kinder, <mark>macht</mark> die Tür <mark>zu</mark> und <mark>seid</mark> leise!“", "„Dzieci, zamknijcie drzwi i bądźcie cicho!”"],
       ["„<mark>Sei</mark> nicht traurig und <mark>hab</mark> keine Angst!“", "„Nie bądź smutny i nie bój się!”"],
     ] },
-  { title: "⏪ Perfekt bez ge-", words: ["hat bekommen", "hat erzählt", "hat vergessen", "hat gefallen"],
+  { title: "⏪ Perfekt z haben", words: ["hat gemacht", "hat gekocht", "hat gelernt", "hat gearbeitet", "hat gekauft", "hat geputzt", "hat gewohnt", "hat gespielt", "hat gewaschen", "hat gegessen", "hat getrunken", "hat geschrieben", "hat gesehen", "hat gelesen", "hat geschlafen", "hat genommen", "hat gefunden", "hat geholfen", "hat getragen"],
+    story: [
+      ["Was <mark>hast</mark> du am Wochenende <mark>gemacht</mark>? – Ich <mark>habe</mark> Deutsch <mark>gelernt</mark> und Suppe <mark>gekocht</mark>.", "Co robiłeś w weekend? – Uczyłem się niemieckiego i ugotowałem zupę."],
+      ["Am Samstag <mark>habe</mark> ich eine Jacke <mark>gekauft</mark> und das Bad <mark>geputzt</mark>. Ich <mark>habe</mark> die Wäsche <mark>gewaschen</mark>.", "W sobotę kupiłem kurtkę i posprzątałem łazienkę. Zrobiłem pranie."],
+      ["Wir <mark>haben</mark> zwei Jahre in Berlin <mark>gewohnt</mark> und im Büro <mark>gearbeitet</mark>. Die Kinder <mark>haben</mark> im Garten <mark>gespielt</mark>.", "Mieszkaliśmy dwa lata w Berlinie i pracowaliśmy w biurze. Dzieci bawiły się w ogrodzie."],
+      ["Abends <mark>habe</mark> ich Fisch <mark>gegessen</mark>, Tee <mark>getrunken</mark> und einen Film <mark>gesehen</mark>. Dann <mark>habe</mark> ich acht Stunden <mark>geschlafen</mark>.", "Wieczorem zjadłem rybę, wypiłem herbatę i obejrzałem film. Potem spałem osiem godzin."],
+      ["Ich <mark>habe</mark> einen Brief <mark>geschrieben</mark> und ein Buch <mark>gelesen</mark>. Er <mark>hat</mark> den Bus <mark>genommen</mark>, meine Brille <mark>gefunden</mark> und mir <mark>geholfen</mark>. Sie <mark>hat</mark> ein rotes Kleid <mark>getragen</mark>.", "Napisałem list i przeczytałem książkę. On wziął autobus, znalazł moje okulary i mi pomógł. Ona miała na sobie czerwoną sukienkę."],
+    ] },
+  { title: "🚶 Perfekt z sein", words: ["ist aufgestanden", "ist gegangen", "ist gefahren", "ist gekommen", "ist geflogen", "ist geblieben", "ist geschwommen", "ist gewesen"],
+    story: [
+      ["Im Urlaub <mark>sind</mark> wir nach Griechenland <mark>geflogen</mark>. Wir <mark>sind</mark> im Urlaub <mark>gewesen</mark>.", "Na urlopie polecieliśmy do Grecji. Byliśmy na urlopie."],
+      ["Ich <mark>bin</mark> um sieben Uhr <mark>aufgestanden</mark> und zum Strand <mark>gegangen</mark>. Er <mark>ist</mark> im See <mark>geschwommen</mark>.", "Wstałem o siódmej i poszedłem na plażę. On pływał w jeziorze."],
+      ["Ich <mark>bin</mark> mit dem Zug nach Berlin <mark>gefahren</mark>. Er <mark>ist</mark> zu spät <mark>gekommen</mark>.", "Pojechałem pociągiem do Berlina. On przyszedł za późno."],
+      ["Gestern <mark>bin</mark> ich zu Hause <mark>geblieben</mark>.", "Wczoraj zostałem w domu."],
+    ] },
+  { title: "🧩 Perfekt: rozdzielne", words: ["hat aufgeräumt", "hat eingekauft", "hat abgewaschen", "hat aufgehängt", "hat angezogen", "hat ausgezogen", "hat ausgemacht", "hat angerufen"],
+    story: [
+      ["Gestern <mark>habe</mark> ich mein Zimmer <mark>aufgeräumt</mark> und Gemüse <mark>eingekauft</mark>.", "Wczoraj posprzątałem pokój i kupiłem warzywa."],
+      ["Wer <mark>hat</mark> das Geschirr <mark>abgewaschen</mark>? Er <mark>hat</mark> die Wäsche <mark>aufgehängt</mark>.", "Kto pozmywał naczynia? On rozwiesił pranie."],
+      ["Sie <mark>hat</mark> den Mantel <mark>angezogen</mark>, ich <mark>habe</mark> die Schuhe <mark>ausgezogen</mark>.", "Ona założyła płaszcz, ja zdjąłem buty."],
+      ["Ich <mark>habe</mark> das Handy <mark>ausgemacht</mark>. Dann <mark>habe</mark> ich dich <mark>angerufen</mark>.", "Wyłączyłem telefon. Potem do Ciebie zadzwoniłem."],
+    ] },
+  { title: "⏪ Perfekt bez ge-", words: ["hat bekommen", "hat erzählt", "hat vergessen", "hat gefallen", "hat besucht", "hat verstanden", "hat bezahlt", "hat verloren", "hat telefoniert", "hat anprobiert"],
     story: [
       ["Gestern <mark>hat</mark> Stefan die Stelle bei SUPS <mark>bekommen</mark>.", "Wczoraj Stefan dostał posadę w SUPS."],
       ["Er <mark>hat</mark> eine lustige Geschichte <mark>erzählt</mark>. Aber er <mark>hat</mark> seinen Schlüssel <mark>vergessen</mark>.", "Opowiedział zabawną historię. Ale zapomniał klucza."],
       ["Der Film <mark>hat</mark> ihm <mark>gefallen</mark>.", "Film mu się podobał."],
+      ["Ich <mark>habe</mark> meine Großeltern <mark>besucht</mark>. Sie <mark>hat</mark> lange <mark>telefoniert</mark>.", "Odwiedziłem dziadków. Ona długo rozmawiała przez telefon."],
+      ["Ich <mark>habe</mark> die Hose <mark>anprobiert</mark> und die Rechnung <mark>bezahlt</mark>. Ich <mark>habe</mark> das nicht <mark>verstanden</mark> und meinen Schlüssel <mark>verloren</mark>.", "Przymierzyłem spodnie i zapłaciłem rachunek. Nie zrozumiałem tego i zgubiłem klucz."],
     ] },
   { title: "📊 Porównania", words: ["billig – billiger – am billigsten", "teuer – teurer – am teuersten", "lang – länger – am längsten", "groß – größer – am größten", "interessant – interessanter – am interessantesten", "wichtig – wichtiger – am wichtigsten", "gut – besser – am besten", "gern – lieber – am liebsten", "viel – mehr – am meisten", "genauso … wie / … als", "besonders gern / nicht so gern"],
     story: [
@@ -1291,6 +1421,34 @@ const DRILLS = [
       ["Przepraszam, że jestem spóźniony.", "Entschuldigung, dass <mark>ich spät dran bin</mark>."],
       ["Przykro mi, że się spóźniłem.", "Es tut mir leid, dass ich mich <mark>verspätet habe</mark>."],
       ["Obiecuję sobie, że będę wstawać wcześniej.", "Ich verspreche mir, dass ich <mark>früher aufstehe</mark>."],
+    ] },
+  { title: "8. Ich bin … gegangen (sein + Partizip)", formula: ["Ich", "bin", "kiedy?", "dokąd?", "Partizip II na końcu"],
+    rule: "Ruch i zmiana miejsca: sein + Partizip II. Imiesłów idzie na koniec zdania.",
+    items: [
+      ["Poszedłem na plażę.", "Ich bin <mark>zum Strand gegangen</mark>."],
+      ["Wczoraj poszedłem na plażę.", "Ich bin <mark>gestern</mark> zum Strand gegangen."],
+      ["Wczoraj poszedłem na plażę. (inaczej)", "<mark>Gestern bin ich</mark> zum Strand gegangen."],
+      ["Pojechałem pociągiem do Berlina.", "Ich bin <mark>mit dem Zug nach Berlin gefahren</mark>."],
+      ["On przyszedł za późno.", "<mark>Er ist</mark> zu spät <mark>gekommen</mark>."],
+      ["Polecieliśmy do Grecji.", "<mark>Wir sind</mark> nach Griechenland <mark>geflogen</mark>."],
+      ["Zostałem w domu.", "Ich bin zu Hause <mark>geblieben</mark>."],
+      ["Wstałem o siódmej.", "Ich bin <mark>um sieben Uhr aufgestanden</mark>."],
+      ["Czy wczoraj pojechałeś do pracy?", "<mark>Bist du</mark> gestern zur Arbeit gefahren?"],
+      ["Byliśmy na urlopie.", "Wir sind im Urlaub <mark>gewesen</mark>."],
+    ] },
+  { title: "9. Perfekt: ge- w środku albo wcale", formula: ["Ich", "habe", "…", "Partizip II na końcu"],
+    rule: "Rozdzielne: ge- w środku (aufgeräumt). Nierozdzielne i -ieren: bez ge- (besucht, anprobiert).",
+    items: [
+      ["Posprzątałem pokój.", "Ich habe mein Zimmer <mark>aufgeräumt</mark>."],
+      ["Zrobiłem zakupy.", "Ich habe <mark>eingekauft</mark>."],
+      ["Wczoraj zrobiłem zakupy.", "Ich habe <mark>gestern</mark> eingekauft."],
+      ["Zadzwoniłem do Ciebie.", "Ich habe <mark>dich angerufen</mark>."],
+      ["Wyłączyłem telefon.", "Ich habe das Handy <mark>ausgemacht</mark>."],
+      ["Odwiedziłem dziadków.", "Ich habe meine Großeltern <mark>besucht</mark>."],
+      ["Nie zrozumiałem tego.", "Ich habe das <mark>nicht verstanden</mark>."],
+      ["Zapłaciliśmy rachunek.", "<mark>Wir haben</mark> die Rechnung <mark>bezahlt</mark>."],
+      ["Przymierzyłem spodnie.", "Ich habe die Hose <mark>anprobiert</mark>."],
+      ["Zgubiłem klucz.", "Ich habe meinen Schlüssel <mark>verloren</mark>."],
     ] },
 ];
 
