@@ -1096,7 +1096,7 @@ function render() {
           <div class="emoji">${c.emoji}</div>
           <div class="sentence">${c.ex}</div>
           <div class="ex-pl">${c.exPl}</div>
-          <span class="hint">kliknij, aby zobaczyć wyrażenie</span>
+          <span class="hint">kliknij, aby zobaczyć wyrażenie · Ctrl+→ odsłuchaj</span>
         </div>
         <div class="face back">
           <span class="cat-tag">${known.has(list[pos]) ? "✓ umiem" : c.cat}</span>
@@ -1156,7 +1156,13 @@ $("reset").onclick = () => {
 
 document.addEventListener("keydown", (e) => {
   if ($("cards-view").hidden) return;
-  if (e.key === "ArrowRight") go(1);
+  if ((e.ctrlKey || e.metaKey) && e.key === "ArrowRight") {
+    e.preventDefault();
+    const side = document.querySelector(flipped ? ".back .speak" : ".front .speak");
+    if (side) speak(decodeURIComponent(side.dataset.say));
+  }
+  else if (e.ctrlKey || e.metaKey || e.altKey) return;
+  else if (e.key === "ArrowRight") go(1);
   else if (e.key === "ArrowLeft") go(-1);
   else if (e.key === " ") { e.preventDefault(); flipped = !flipped; $("card")?.classList.toggle("flipped", flipped); }
 });
